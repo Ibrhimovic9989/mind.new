@@ -1,0 +1,113 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #050507;
+  --bg2: #0a0a0f;
+  --card: #111118;
+  --accent: #7c6aff;
+  --accent2: #ff6b6b;
+  --glow: rgba(124, 106, 255, 0.15);
+  --glow2: rgba(255, 107, 107, 0.15);
+  --text: #eeeef0;
+  --muted: #8b8b9e;
+  --border: rgba(255, 255, 255, 0.06);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, 'SF Pro Display', 'Inter', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--accent); color: white; }
+
+.gradient-text {
+  background: linear-gradient(135deg, #7c6aff 0%, #ff6b6b 50%, #ffb86c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-cool {
+  background: linear-gradient(135deg, #7c6aff 0%, #4fc3f7 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  border-color: rgba(124, 106, 255, 0.3);
+  box-shadow: 0 20px 60px rgba(124, 106, 255, 0.1);
+}
+
+.stat-number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-8px) rotate(1deg); }
+  66% { transform: translateY(4px) rotate(-1deg); }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes scan-line {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-pulse-slow { animation: pulse-slow 4s ease-in-out infinite; }
+
+.brain-container {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.brain-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(124, 106, 255, 0.15);
+  animation: float 8s ease-in-out infinite;
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+}
+
+.metric-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass {
+  background: rgba(17, 17, 24, 0.6);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+}
