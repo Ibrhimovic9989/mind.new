@@ -20,8 +20,7 @@ body {
 }
 
 ::selection { background: var(--accent); color: white; }
-
-h1, h2, h3, h4, h5, h6 { font-weight: 500; color: #fafafa; letter-spacing: -0.02em; }
+h1, h2, h3 { font-weight: 500; color: #fafafa; letter-spacing: -0.02em; }
 
 .gradient-text {
   background: linear-gradient(135deg, #9b8aff 0%, #ff8a8a 50%, #ffcb8a 100%);
@@ -30,35 +29,63 @@ h1, h2, h3, h4, h5, h6 { font-weight: 500; color: #fafafa; letter-spacing: -0.02
   background-clip: text;
 }
 
-.hero-glow {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(100px);
-  pointer-events: none;
-}
-
 .card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 12px;
-  transition: border-color 0.3s;
+  transition: border-color 0.3s, transform 0.3s;
 }
-.card:hover { border-color: rgba(124, 106, 255, 0.2); }
+.card:hover { border-color: rgba(124, 106, 255, 0.2); transform: translateY(-2px); }
 
-.divider {
-  height: 1px;
-  background: var(--border);
-  max-width: 1024px;
-  margin: 0 auto;
+.divider { height: 1px; background: var(--border); max-width: 1024px; margin: 0 auto; }
+
+/* Scroll animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* Brain graphic */
+@keyframes rotate-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+@keyframes rotate-reverse { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
+@keyframes pulse-glow { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.7; } }
+@keyframes dash { to { stroke-dashoffset: 0; } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes particle { 0% { transform: translate(0, 0) scale(1); opacity: 1; } 100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; } }
+
+.rotate-slow { animation: rotate-slow 30s linear infinite; }
+.rotate-reverse { animation: rotate-reverse 25s linear infinite; }
+.pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+.float { animation: float 4s ease-in-out infinite; }
+.float-delay { animation: float 4s ease-in-out infinite; animation-delay: 1s; }
+.float-delay-2 { animation: float 4s ease-in-out infinite; animation-delay: 2s; }
+
+/* Flowing lines */
+@keyframes flow {
+  0% { stroke-dashoffset: 200; opacity: 0; }
+  20% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+.flow-line {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: flow 3s ease-in-out infinite;
 }
+.flow-line-2 { animation-delay: 1s; }
+.flow-line-3 { animation-delay: 2s; }
 
-.ring {
-  position: absolute;
-  border-radius: 50%;
-  border: 1px solid rgba(124, 106, 255, 0.08);
+/* Metric bar animation */
+.metric-grow {
+  transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
