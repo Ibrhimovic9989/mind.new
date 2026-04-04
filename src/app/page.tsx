@@ -55,7 +55,7 @@ function Nav() {
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${s ? "bg-[#050507]/80 backdrop-blur-xl border-b border-[var(--border)]" : ""}`}>
       <div className="max-w-[1024px] mx-auto px-6 h-14 flex items-center justify-between">
-        <span className="text-[15px] font-medium text-white tracking-tight">Mind.new</span>
+        <img src="/logo.svg" alt="Mind.new" className="h-7" />
         <div className="hidden md:flex items-center gap-7 text-[13px] text-[var(--muted)]">
           <a href="#research" className="hover:text-white transition">Research</a>
           <a href="#capabilities" className="hover:text-white transition">Capabilities</a>
@@ -107,14 +107,14 @@ function Hero() {
           <img
             src="/brain/brain_hero_main.png"
             alt="Predicted brain activity - left hemisphere"
-            className="absolute w-[260px] top-2 left-0 drop-shadow-2xl"
+            className="absolute w-[240px] top-4 left-0 drop-shadow-2xl"
             style={{ filter: "drop-shadow(0 0 40px rgba(124, 106, 255, 0.15))" }}
           />
-          {/* Second brain - right hemisphere, offset */}
+          {/* Second brain - right hemisphere, offset with gap */}
           <img
             src="/brain/brain_hero_medial.png"
             alt="Predicted brain activity - right hemisphere"
-            className="absolute w-[240px] top-10 right-0 drop-shadow-2xl"
+            className="absolute w-[220px] top-12 right-[-10px] drop-shadow-2xl"
             style={{ filter: "drop-shadow(0 0 40px rgba(255, 107, 107, 0.12))" }}
           />
           {/* Labels */}
@@ -355,8 +355,8 @@ function CTA() {
         <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Build with <span className="gradient-text">Mind.new</span></h2>
         <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-7 max-w-md font-light">API access for researchers, clinics, schools, and companies building accessible products.</p>
         <div className="reveal reveal-delay-2 flex gap-3">
-          <a href="mailto:ibrahimshaheer75@gmail.com?subject=Mind.new%20API%20Access" className="text-[13px] px-5 py-2 rounded-full bg-white text-[#050507] font-medium hover:bg-white/90 transition">Request Access</a>
-          <a href="https://leezadeck.my.canva.site/" className="text-[13px] px-5 py-2 rounded-full border border-white/10 text-[var(--text)] hover:border-white/20 transition">About Leeza Care</a>
+          <a href="mailto:ibrahim.raza@leeza.app?subject=Mind.new%20API%20Access" className="text-[13px] px-5 py-2 rounded-full bg-white text-[#050507] font-medium hover:bg-white/90 transition">Request Access</a>
+          <a href="https://leeza.app" className="text-[13px] px-5 py-2 rounded-full border border-white/10 text-[var(--text)] hover:border-white/20 transition">About Leeza Care</a>
         </div>
       </div>
     </S>
@@ -370,8 +370,8 @@ function Footer() {
       <div className="max-w-[1024px] mx-auto flex items-center justify-between text-[11px] text-[var(--muted)]">
         <span>Mind.new by Leeza Care Research &amp; Development Foundation</span>
         <div className="flex gap-5">
-          <a href="https://leezadeck.my.canva.site/" className="hover:text-white transition">About</a>
-          <a href="mailto:ibrahimshaheer75@gmail.com" className="hover:text-white transition">Contact</a>
+          <a href="https://leeza.app" className="hover:text-white transition">About</a>
+          <a href="mailto:ibrahim.raza@leeza.app" className="hover:text-white transition">Contact</a>
         </div>
       </div>
     </footer>
