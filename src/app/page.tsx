@@ -105,14 +105,14 @@ function Hero() {
         <div className="hidden lg:block relative w-[420px] h-[340px] flex-shrink-0">
           {/* Main brain - left hemisphere */}
           <img
-            src="/brain/brain_hero_0.png"
+            src="/brain/brain_hero_main.png"
             alt="Predicted brain activity - left hemisphere"
             className="absolute w-[260px] top-2 left-0 drop-shadow-2xl"
             style={{ filter: "drop-shadow(0 0 40px rgba(124, 106, 255, 0.15))" }}
           />
           {/* Second brain - right hemisphere, offset */}
           <img
-            src="/brain/brain_hero_1.png"
+            src="/brain/brain_hero_medial.png"
             alt="Predicted brain activity - right hemisphere"
             className="absolute w-[240px] top-10 right-0 drop-shadow-2xl"
             style={{ filter: "drop-shadow(0 0 40px rgba(255, 107, 107, 0.12))" }}
@@ -148,11 +148,11 @@ function Problem() {
           <div className="grid grid-cols-2 gap-3">
             <div className="card p-3 text-center">
               <div className="text-[10px] text-[var(--accent)] font-medium mb-2">Neurotypical</div>
-              <img src="/brain/brain_hero_0.png" alt="NT brain" className="w-full rounded" />
+              <img src="/brain/brain_nt_left.png" alt="NT brain" className="w-full rounded" />
             </div>
             <div className="card p-3 text-center">
               <div className="text-[10px] text-[var(--accent2)] font-medium mb-2">Neurodiverse</div>
-              <img src="/brain/brain_nd_0.png" alt="ND brain" className="w-full rounded" />
+              <img src="/brain/brain_nd_left.png" alt="ND brain" className="w-full rounded" />
             </div>
           </div>
           <div className="text-[10px] text-[var(--muted)] text-center mt-3 font-light">Same stimulus, different neural activation patterns</div>
@@ -186,7 +186,7 @@ function Architecture() {
             <div className="w-[90px] h-24 rounded-lg border border-[var(--accent2)]/15 bg-[var(--accent2)]/[0.03] flex items-center justify-center text-[11px] text-[var(--accent2)] font-medium flex-shrink-0">ND Mapper</div>
             <span className="text-[var(--muted)] text-lg">→</span>
             <div className="flex-shrink-0">
-              <img src="/brain/brain_hero_2.png" alt="Brain output" className="w-20 h-20 rounded-lg object-cover" style={{ filter: "drop-shadow(0 0 20px rgba(124, 106, 255, 0.2))" }} />
+              <img src="/brain/brain_nt_right.png" alt="Brain output" className="w-20 h-20 rounded-lg object-cover" style={{ filter: "drop-shadow(0 0 20px rgba(124, 106, 255, 0.2))" }} />
             </div>
           </div>
         </div>
