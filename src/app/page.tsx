@@ -55,7 +55,14 @@ function Nav() {
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${s ? "bg-[#050507]/80 backdrop-blur-xl border-b border-[var(--border)]" : ""}`}>
       <div className="max-w-[1024px] mx-auto px-6 h-14 flex items-center justify-between">
-        <img src="/logo.svg" alt="Mind.new" className="h-7" />
+        <div className="flex items-center gap-2.5">
+          <img src="/brain/brain_hero_main.png" alt="" className="h-8 w-8 object-contain" />
+          <span className="text-[18px] tracking-tight" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 500 }}>
+            <span className="gradient-text font-normal">mind</span>
+            <span className="text-[#52525b]" style={{ fontStyle: "normal" }}>.</span>
+            <span className="text-[#d4d4d8] font-light">new</span>
+          </span>
+        </div>
         <div className="hidden md:flex items-center gap-7 text-[13px] text-[var(--muted)]">
           <a href="#research" className="hover:text-white transition">Research</a>
           <a href="#capabilities" className="hover:text-white transition">Capabilities</a>
