@@ -175,12 +175,13 @@ function Problem() {
 /* ─── ARCHITECTURE ─── */
 /* ─── DEMO ─── */
 function Demo() {
+  const ref = useReveal();
   return (
-    <S id="demo">
-      <div className="max-w-[1024px] mx-auto">
+    <section ref={ref} id="demo" className="py-24 px-6">
+      <div className="max-w-[1024px] mx-auto reveal">
         <BrainDemo />
       </div>
-    </S>
+    </section>
   );
 }
 
