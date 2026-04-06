@@ -2,20 +2,20 @@
 
 import { useRef, useState, useEffect } from "react";
 
-const STIMULUS = "A child walks into a noisy classroom with fluorescent lights buzzing and thirty children shouting and laughing while a teacher speaks loudly over the noise";
+const STIMULUS = "A child opens a classroom door. Teacher talking loudly. Students get up and move. A boy runs to a desk shouting excitedly. Classroom erupts — students jumping, one boy sits overwhelmed with head down.";
 
 const TIMESTAMPS = [
-  { t: 0, label: "Entering the space", stress: "low" },
-  { t: 1, label: "Fluorescent lights detected", stress: "moderate" },
-  { t: 2, label: "Buzzing sound registers", stress: "moderate" },
-  { t: 3, label: "Children shouting begins", stress: "high" },
-  { t: 4, label: "Multiple voices overlap", stress: "high" },
-  { t: 5, label: "Visual clutter increases", stress: "high" },
-  { t: 6, label: "Teacher speaking loudly", stress: "high" },
-  { t: 7, label: "Noise peaks", stress: "high" },
-  { t: 8, label: "Sensory overload zone", stress: "high" },
-  { t: 9, label: "Processing overwhelm", stress: "high" },
-  { t: 10, label: "Sustained stress", stress: "high" },
+  { t: 0, label: "Hand opens classroom door", stress: "low" },
+  { t: 1, label: "Room full of students revealed", stress: "moderate" },
+  { t: 2, label: "Teacher talking loudly at front", stress: "moderate" },
+  { t: 3, label: "Students getting up from seats", stress: "moderate" },
+  { t: 4, label: "Movement towards camera", stress: "high" },
+  { t: 5, label: "Boy runs to desk excitedly", stress: "high" },
+  { t: 6, label: "Shouting with excitement", stress: "high" },
+  { t: 7, label: "Multiple voices overlapping", stress: "high" },
+  { t: 8, label: "Students jumping around", stress: "high" },
+  { t: 9, label: "Classroom chaos — sensory overload", stress: "high" },
+  { t: 10, label: "One boy sits overwhelmed, head down", stress: "high" },
 ];
 
 export default function BrainDemo() {
@@ -103,7 +103,6 @@ export default function BrainDemo() {
             ref={clipRef}
             src="/demo/classroom_web.mp4"
             className="w-full h-full object-cover"
-            muted
             playsInline
             loop
           />
