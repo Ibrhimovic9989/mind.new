@@ -101,7 +101,7 @@ export default function BrainDemo() {
         <div className="rounded-lg overflow-hidden bg-black aspect-video max-h-[240px]">
           <video
             ref={clipRef}
-            src="/demo/classroom.mp4"
+            src="/demo/classroom_web.mp4"
             className="w-full h-full object-cover"
             muted
             playsInline
