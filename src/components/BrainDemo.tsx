@@ -21,6 +21,7 @@ const TIMESTAMPS = [
 export default function BrainDemo() {
   const ntRef = useRef<HTMLVideoElement>(null);
   const ndRef = useRef<HTMLVideoElement>(null);
+  const clipRef = useRef<HTMLVideoElement>(null);
   const [mode, setMode] = useState<"nt" | "nd" | "compare">("compare");
   const [currentTime, setCurrentTime] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -38,18 +39,21 @@ export default function BrainDemo() {
   const syncPlay = () => {
     ntRef.current?.play();
     ndRef.current?.play();
+    clipRef.current?.play();
     setPlaying(true);
   };
 
   const syncPause = () => {
     ntRef.current?.pause();
     ndRef.current?.pause();
+    clipRef.current?.pause();
     setPlaying(false);
   };
 
   const syncSeek = (t: number) => {
     if (ntRef.current) ntRef.current.currentTime = t;
     if (ndRef.current) ndRef.current.currentTime = t;
+    if (clipRef.current) clipRef.current.currentTime = t;
   };
 
   const restart = () => {
@@ -91,7 +95,23 @@ export default function BrainDemo() {
         <p className="text-[13px] text-[var(--text)] font-light leading-relaxed">{STIMULUS}</p>
       </div>
 
+      {/* Stimulus video clip */}
+      <div className="mb-4">
+        <div className="text-[10px] text-[var(--muted)] font-medium mb-2">Stimulus Video</div>
+        <div className="rounded-lg overflow-hidden bg-black aspect-video max-h-[240px]">
+          <video
+            ref={clipRef}
+            src="/demo/classroom.mp4"
+            className="w-full h-full object-cover"
+            muted
+            playsInline
+            loop
+          />
+        </div>
+      </div>
+
       {/* Brain videos */}
+      <div className="text-[10px] text-[var(--muted)] font-medium mb-2">Brain Response</div>
       <div className={`grid gap-4 mb-4 ${mode === "compare" ? "grid-cols-2" : "grid-cols-1"}`}>
         {(mode === "nt" || mode === "compare") && (
           <div>
