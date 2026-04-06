@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, ReactNode } from "react";
+import BrainDemo from "@/components/BrainDemo";
 
 /* ─── SCROLL REVEAL ─── */
 function useReveal() {
@@ -27,6 +28,8 @@ export default function Home() {
       <Hero />
       <Dv />
       <Problem />
+      <Dv />
+      <Demo />
       <Dv />
       <Architecture />
       <Dv />
@@ -170,6 +173,17 @@ function Problem() {
 }
 
 /* ─── ARCHITECTURE ─── */
+/* ─── DEMO ─── */
+function Demo() {
+  return (
+    <S id="demo">
+      <div className="max-w-[1024px] mx-auto">
+        <BrainDemo />
+      </div>
+    </S>
+  );
+}
+
 function Architecture() {
   return (
     <S>
