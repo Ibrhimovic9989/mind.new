@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState, useRef, ReactNode } from "react";
-import BrainDemo from "@/components/BrainDemo";
+import dynamic from "next/dynamic";
+const BrainDemo = dynamic(() => import("@/components/BrainDemo"), { ssr: false });
 
 /* ─── SCROLL REVEAL ─── */
 function useReveal() {
