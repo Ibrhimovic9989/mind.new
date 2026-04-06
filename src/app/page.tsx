@@ -176,10 +176,9 @@ function Problem() {
 /* ─── ARCHITECTURE ─── */
 /* ─── DEMO ─── */
 function Demo() {
-  const ref = useReveal();
   return (
-    <section ref={ref} id="demo" className="py-24 px-6">
-      <div className="max-w-[1024px] mx-auto reveal">
+    <section id="demo" className="py-24 px-6">
+      <div className="max-w-[1024px] mx-auto">
         <BrainDemo />
       </div>
     </section>
