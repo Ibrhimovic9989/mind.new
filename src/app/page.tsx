@@ -87,15 +87,16 @@ function Hero() {
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2 mb-5">
             <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)]" />
-            <span className="text-[11px] text-[var(--muted)] tracking-widest uppercase">Research Preview</span>
+            <span className="text-[11px] text-[var(--muted)] tracking-widest uppercase">Introducing Cortex v0.1</span>
           </div>
           <h1 className="text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] tracking-[-0.03em] font-medium">
-            An AI Model of the{" "}
-            <span className="gradient-text">Neurodiverse Brain</span>
+            The Foundation Model{" "}
+            <span className="block">for the <span className="gradient-text">Neurodiverse Brain</span></span>
           </h1>
           <p className="text-[15px] text-[var(--muted)] mt-4 max-w-[420px] leading-relaxed font-light">
-            Predicting neural responses to sight, sound, and language.
-            Mapping how 20,484 cortical points respond differently in autistic minds.
+            Cortex is the world&apos;s first AI foundation model that predicts how
+            autistic minds experience sight, sound, and language — mapping
+            20,484 cortical points in real time.
           </p>
           <div className="flex items-center gap-3 mt-7">
             <a href="#research" className="text-[13px] px-5 py-2 rounded-full bg-white text-[#050507] font-medium hover:bg-white/90 transition">Explore the Research</a>
@@ -146,7 +147,7 @@ function Problem() {
           <h2 className="reveal text-[26px] leading-tight tracking-tight">Understanding Neurodiversity at Scale</h2>
           <div className="reveal reveal-delay-1 space-y-4 text-[14px] text-[var(--muted)] leading-relaxed font-light mt-5">
             <p>Understanding how autistic brains process the world has required individual brain scans — expensive, slow, and impossible for many.</p>
-            <p className="text-[var(--text)]">Mind.new predicts how any neurodiverse brain responds to any stimulus. Months of lab work in seconds.</p>
+            <p className="text-[var(--text)]">Cortex changes this. A foundation model that predicts how any neurodiverse brain responds to any stimulus — transforming months of lab work into seconds of computation.</p>
           </div>
         </div>
 
@@ -174,8 +175,8 @@ function Architecture() {
   return (
     <S>
       <div className="max-w-[1024px] mx-auto">
-        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Three-Stage Architecture</h2>
-        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-10 max-w-lg font-light">A proprietary multi-modal pipeline for predicting neurodiverse brain activity.</p>
+        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Cortex Architecture</h2>
+        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-10 max-w-lg font-light">A proprietary tri-modal pipeline purpose-built for predicting neurodiverse brain activity.</p>
 
         <div className="reveal reveal-delay-2 card p-6 overflow-x-auto">
           <div className="flex items-center gap-4 min-w-[600px]">
@@ -225,8 +226,8 @@ function Scale() {
   return (
     <S>
       <div className="max-w-[1024px] mx-auto">
-        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Scaling Laws</h2>
-        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-10 max-w-lg font-light">Prediction accuracy increases log-linearly. No plateau reached.</p>
+        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Cortex Scaling Laws</h2>
+        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-10 max-w-lg font-light">Cortex follows a scaling law: accuracy increases log-linearly with more brain data. No plateau reached.</p>
         <div ref={ref} className="reveal reveal-delay-2 card p-6">
           <div className="flex items-end gap-2 h-44">
             {bars.map((b, i) => (
@@ -253,8 +254,8 @@ function Networks() {
   return (
     <S id="capabilities">
       <div ref={ref} className="max-w-[1024px] mx-auto">
-        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Six Neural Networks Mapped</h2>
-        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-10 max-w-lg font-light">How sensory processing differs across the brain&apos;s functional networks.</p>
+        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">What Cortex Understands</h2>
+        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-10 max-w-lg font-light">Cortex maps how sensory processing differs across six key brain networks.</p>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {[
             { name: "Visual", pct: 55 }, { name: "Auditory", pct: 72 }, { name: "Social", pct: 91 },
@@ -279,8 +280,8 @@ function Products() {
   return (
     <S id="products">
       <div className="max-w-[1024px] mx-auto">
-        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Built on Mind.new</h2>
-        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-10 max-w-lg font-light">Practical tools powered by the foundation model.</p>
+        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Powered by Cortex</h2>
+        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-10 max-w-lg font-light">The foundation model enables practical tools for autism accessibility.</p>
         <div className="grid md:grid-cols-2 gap-3">
           {[
             { name: "Sensory Audit", desc: "Upload video of any space. Get second-by-second sensory analysis, accessibility score, and actionable recommendations.", tag: "Live", live: true },
@@ -328,11 +329,11 @@ function Timeline() {
       <div className="max-w-[1024px] mx-auto">
         <h2 className="reveal text-[26px] leading-tight tracking-tight mb-10">Roadmap</h2>
         {[
-          { v: "v0.1", n: "Seed", d: "Foundation model trained. Statistical brain transform. Live API.", c: true },
-          { v: "v0.5", n: "Sprout", d: "GPU fine-tuning. Sensory subtypes. Video input. Age-specific models.", c: false },
-          { v: "v1.0", n: "Bloom", d: "Validated. 10K+ subjects. Sensory Passport. Published metrics.", c: false },
-          { v: "v2.0", n: "Canopy", d: "Real-time. EEG. Wearables. 100K+ subjects.", c: false },
-          { v: "v3.0", n: "Forest", d: "All neurodiversity. ADHD, SPD, anxiety. 400K+ subjects.", c: false },
+          { v: "Cortex v0.1", n: "Seed", d: "Foundation model trained. Statistical brain transform. Live API.", c: true },
+          { v: "Cortex v0.5", n: "Sprout", d: "GPU fine-tuning. Sensory subtypes. Video input. Age-specific models.", c: false },
+          { v: "Cortex v1.0", n: "Bloom", d: "Clinically validated. 10K+ subjects. Sensory Passport. Published metrics.", c: false },
+          { v: "Cortex v2.0", n: "Canopy", d: "Real-time processing. EEG integration. Wearable support. 100K+ subjects.", c: false },
+          { v: "Cortex v3.0", n: "Forest", d: "Foundation model for all neurodiversity. ADHD, SPD, anxiety. 400K+ subjects.", c: false },
         ].map((item, i) => (
           <div key={item.v} className={`reveal reveal-delay-${Math.min(i + 1, 5)} flex gap-4`}>
             <div className="flex flex-col items-center">
@@ -359,10 +360,10 @@ function CTA() {
   return (
     <S id="contact">
       <div className="max-w-[1024px] mx-auto">
-        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Build with <span className="gradient-text">Mind.new</span></h2>
+        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Build with <span className="gradient-text">Cortex</span></h2>
         <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-7 max-w-md font-light">API access for researchers, clinics, schools, and companies building accessible products.</p>
         <div className="reveal reveal-delay-2 flex gap-3">
-          <a href="mailto:ibrahim.raza@leeza.app?subject=Mind.new%20API%20Access" className="text-[13px] px-5 py-2 rounded-full bg-white text-[#050507] font-medium hover:bg-white/90 transition">Request Access</a>
+          <a href="mailto:ibrahim.raza@leeza.app?subject=Cortex%20API%20Access" className="text-[13px] px-5 py-2 rounded-full bg-white text-[#050507] font-medium hover:bg-white/90 transition">Request Access</a>
           <a href="https://leeza.app" className="text-[13px] px-5 py-2 rounded-full border border-white/10 text-[var(--text)] hover:border-white/20 transition">About Leeza Care</a>
         </div>
       </div>
