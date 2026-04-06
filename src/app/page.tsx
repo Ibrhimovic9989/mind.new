@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect, useState, useRef, ReactNode } from "react";
-import dynamic from "next/dynamic";
-const BrainDemo = dynamic(() => import("@/components/BrainDemo"), { ssr: false });
+import BrainDemo from "@/components/BrainDemo";
 
 /* ─── SCROLL REVEAL ─── */
 function useReveal() {
@@ -177,8 +176,8 @@ function Problem() {
 /* ─── DEMO ─── */
 function Demo() {
   return (
-    <section id="demo" className="py-24 px-6">
-      <div className="max-w-[1024px] mx-auto">
+    <section id="demo" className="py-24 px-6" suppressHydrationWarning>
+      <div className="max-w-[1024px] mx-auto" suppressHydrationWarning>
         <BrainDemo />
       </div>
     </section>
