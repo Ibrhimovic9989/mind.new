@@ -36,11 +36,17 @@ export default function BrainDemo() {
     return () => nt.removeEventListener("timeupdate", h);
   }, []);
 
-  const syncPlay = () => {
-    ntRef.current?.play();
-    ndRef.current?.play();
-    clipRef.current?.play();
-    setPlaying(true);
+  const syncPlay = async () => {
+    try {
+      await Promise.all([
+        ntRef.current?.play(),
+        ndRef.current?.play(),
+        clipRef.current?.play(),
+      ]);
+      setPlaying(true);
+    } catch (e) {
+      console.error("Play failed", e);
+    }
   };
 
   const syncPause = () => {
@@ -62,24 +68,24 @@ export default function BrainDemo() {
   };
 
   return (
-    <div className="card p-6 md:p-8">
-      {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+    <div className="card p-4 sm:p-6 md:p-8">
+      {/* Header — stacks on mobile */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-5 sm:mb-6">
         <div>
-          <div className="text-[11px] text-[var(--accent)] font-medium mb-1 tracking-widest uppercase">Live Demo</div>
-          <h3 className="text-[18px] font-medium text-white">See Cortex in Action</h3>
+          <div className="text-[10px] sm:text-[11px] text-[var(--accent)] font-medium mb-1 tracking-widest uppercase">Live Demo</div>
+          <h3 className="text-[16px] sm:text-[18px] font-medium text-white">See Cortex in Action</h3>
         </div>
-        {/* Mode toggle */}
-        <div className="flex gap-1 p-1 rounded-lg bg-white/[0.03] border border-[var(--border)]">
+        {/* Mode toggle — full width on mobile */}
+        <div className="flex gap-1 p-1 rounded-lg bg-white/[0.03] border border-[var(--border)] w-full sm:w-auto">
           {[
-            { id: "nt" as const, label: "Neurotypical" },
-            { id: "nd" as const, label: "Neurodiverse" },
+            { id: "nt" as const, label: "NT" },
+            { id: "nd" as const, label: "ND" },
             { id: "compare" as const, label: "Compare" },
           ].map((m) => (
             <button
               key={m.id}
               onClick={() => setMode(m.id)}
-              className={`text-[11px] px-3 py-1.5 rounded transition ${
+              className={`text-[11px] px-3 py-1.5 rounded transition flex-1 sm:flex-initial ${
                 mode === m.id ? "bg-white/10 text-white" : "text-[var(--muted)] hover:text-white"
               }`}
             >
@@ -90,28 +96,30 @@ export default function BrainDemo() {
       </div>
 
       {/* Stimulus text */}
-      <div className="p-3 rounded-lg bg-white/[0.02] border border-[var(--border)] mb-6">
+      <div className="p-3 rounded-lg bg-white/[0.02] border border-[var(--border)] mb-4">
         <div className="text-[10px] text-[var(--muted)] mb-1">Stimulus</div>
-        <p className="text-[13px] text-[var(--text)] font-light leading-relaxed">{STIMULUS}</p>
+        <p className="text-[12px] sm:text-[13px] text-[var(--text)] font-light leading-relaxed">{STIMULUS}</p>
       </div>
 
       {/* Stimulus video clip */}
       <div className="mb-4">
         <div className="text-[10px] text-[var(--muted)] font-medium mb-2">Stimulus Video</div>
-        <div className="rounded-lg overflow-hidden bg-black aspect-video max-h-[240px]">
+        <div className="rounded-lg overflow-hidden bg-black">
           <video
             ref={clipRef}
-            src="/demo/classroom_web.mp4"
-            className="w-full h-full object-cover"
+            src="/demo/classroom.mp4"
+            className="w-full h-auto max-h-[280px] object-contain bg-black"
             playsInline
             loop
+            preload="metadata"
+            controls={false}
           />
         </div>
       </div>
 
-      {/* Brain videos */}
+      {/* Brain videos — stacks on mobile, side-by-side on desktop */}
       <div className="text-[10px] text-[var(--muted)] font-medium mb-2">Brain Response</div>
-      <div className={`grid gap-4 mb-4 ${mode === "compare" ? "grid-cols-2" : "grid-cols-1"}`}>
+      <div className={`grid gap-3 mb-4 ${mode === "compare" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1"}`}>
         {(mode === "nt" || mode === "compare") && (
           <div>
             <div className="text-[10px] text-[var(--accent)] font-medium mb-2 text-center">
@@ -125,6 +133,7 @@ export default function BrainDemo() {
                 muted
                 playsInline
                 loop
+                preload="metadata"
                 onEnded={() => setPlaying(false)}
               />
             </div>
@@ -143,21 +152,22 @@ export default function BrainDemo() {
                 muted
                 playsInline
                 loop
+                preload="metadata"
               />
             </div>
           </div>
         )}
       </div>
 
-      {/* Current activity indicator */}
-      <div className="flex items-center justify-between mb-4 p-3 rounded-lg bg-white/[0.02] border border-[var(--border)]">
+      {/* Current activity — stacks on mobile */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-4 p-3 rounded-lg bg-white/[0.02] border border-[var(--border)]">
         <div>
           <div className="text-[10px] text-[var(--muted)]">Current event</div>
-          <div className="text-[13px] text-white font-medium">{currentTs?.label}</div>
+          <div className="text-[12px] sm:text-[13px] text-white font-medium">{currentTs?.label}</div>
         </div>
         <div className="flex items-center gap-2">
           <div className="text-[10px] text-[var(--muted)]">Sensory load</div>
-          <span className={`text-[11px] px-2 py-0.5 rounded-full font-medium ${
+          <span className={`text-[10px] sm:text-[11px] px-2 py-0.5 rounded-full font-medium ${
             currentTs?.stress === "high"
               ? "bg-red-500/15 text-red-400"
               : currentTs?.stress === "moderate"
@@ -169,14 +179,13 @@ export default function BrainDemo() {
         </div>
       </div>
 
-      {/* Activity bar legend */}
-      <div className="flex items-center gap-2 mb-4">
+      {/* Activity legend */}
+      <div className="flex items-center gap-2 mb-3">
         <span className="text-[10px] text-[var(--muted)]">Low</span>
         <div className="flex-1 h-2 rounded-full" style={{
           background: "linear-gradient(90deg, #1a1a2e, #ff4500, #ff8c00, #ffd700, #ffffff)",
         }} />
         <span className="text-[10px] text-[var(--muted)]">High</span>
-        <span className="text-[10px] text-[var(--muted)] ml-2">Activity</span>
       </div>
 
       {/* Timeline */}
@@ -213,7 +222,7 @@ export default function BrainDemo() {
       </div>
 
       <p className="text-[10px] text-[var(--muted)] text-center mt-4 font-light">
-        Real predictions from Cortex v0.1 — trained on 933 brain recordings across 20 research sites
+        Real predictions from Cortex v0.1 — trained on 933 brain recordings
       </p>
     </div>
   );
