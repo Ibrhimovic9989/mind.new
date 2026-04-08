@@ -93,7 +93,7 @@ function Hero() {
             <span className="text-[11px] text-[var(--muted)] tracking-widest uppercase">Introducing Cortex v0.1</span>
           </div>
           <h1 className="text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] tracking-[-0.03em] font-medium">
-            The Foundation Model for the <span className="gradient-text">Neurodiverse Brain</span>
+            The Foundation Model for the <span className="gradient-text whitespace-nowrap">Neurodiverse Brain</span>
           </h1>
           <p className="text-[15px] text-[var(--muted)] mt-4 max-w-[420px] leading-relaxed font-light">
             Cortex is the world&apos;s first AI foundation model that predicts how
