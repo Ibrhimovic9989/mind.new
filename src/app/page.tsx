@@ -176,7 +176,7 @@ function Problem() {
 /* ─── DEMO ─── */
 function Demo() {
   return (
-    <section id="demo" className="py-24 px-6" suppressHydrationWarning>
+    <section id="demo" className="py-12 sm:py-16 px-4 sm:px-6" suppressHydrationWarning>
       <div className="max-w-[1024px] mx-auto" suppressHydrationWarning>
         <BrainDemo />
       </div>
