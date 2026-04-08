@@ -59,7 +59,7 @@ function Nav() {
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${s ? "bg-[#050507]/80 backdrop-blur-xl border-b border-[var(--border)]" : ""}`}>
       <div className="max-w-[1024px] mx-auto px-6 h-14 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <img src="/brain/brain_hero_main.png" alt="" className="h-9 w-9 object-contain opacity-80" />
+          <img src="/brainlogo.png" alt="" className="h-9 w-9 object-contain" />
           <span className="text-[28px] tracking-tight leading-none" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 500 }}>
             <span className="gradient-text">mind</span>
             <span className="text-[#52525b]" style={{ fontStyle: "normal" }}>.</span>
