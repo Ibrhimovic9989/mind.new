@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
 export default function PaperPage() {
   return (
     <main className="min-h-screen">
@@ -19,7 +17,7 @@ export default function PaperPage() {
           </h1>
           <div className="text-[14px] text-[var(--muted)] font-light space-y-1">
             <p className="text-[var(--text)] font-normal">Ibrahim Raza</p>
-            <p>Leeza Care Research & Development Foundation</p>
+            <p>Leeza Care Research &amp; Development Foundation</p>
           </div>
         </header>
 
@@ -28,10 +26,10 @@ export default function PaperPage() {
           <SectionTitle>Abstract</SectionTitle>
           <div className="paper-card p-6">
             <p className="text-[14px] leading-[1.85] text-[var(--text)] font-light">
-              We present AQAL, a computational system that predicts how neurodiverse (autistic) brains process sensory stimuli by combining Meta&apos;s TRIBE v2 brain encoding model (177M parameters) with a statistical neurodiverse transform derived from 871 resting-state fMRI scans in the ABIDE I dataset. AQAL maps text, audio, and video inputs onto 20,484 cortical surface vertices and generates both neurotypical and neurodiverse brain activation predictions in real time. Our connectivity analysis identifies 820 statistically significant inter-regional differences (p &lt; 0.05) between ASD and typically-developing groups across 100 Schaefer atlas parcels, with the limbic temporal pole, default mode network, and visual cortex showing the largest effect sizes. We further introduce a sensory profiling module that quantifies divergence across seven canonical brain networks, enabling practical applications in accessibility auditing and personalized accommodation design.
+              We present AQAL, a computational system that predicts how neurodiverse (autistic) brains process sensory stimuli by combining a proprietary multimodal brain encoding model (177M parameters) with a statistical neurodiverse transform derived from 871 resting-state fMRI scans from a large-scale multi-site autism neuroimaging consortium. AQAL maps text, audio, and video inputs onto 20,484 cortical surface vertices and generates both neurotypical and neurodiverse brain activation predictions in real time. Our connectivity analysis identifies 820 statistically significant inter-regional differences (p &lt; 0.05) between ASD and typically-developing groups across 100 cortical parcels, with the limbic temporal pole, default mode network, and visual cortex showing the largest effect sizes. We further introduce a sensory profiling module that quantifies divergence across seven canonical brain networks, enabling practical applications in accessibility auditing and personalized accommodation design.
             </p>
             <div className="flex flex-wrap gap-2 mt-5">
-              {["neurodiversity", "autism", "brain encoding", "fMRI", "ABIDE", "foundation model", "sensory processing"].map(kw => (
+              {["neurodiversity", "autism", "brain encoding", "fMRI", "foundation model", "sensory processing", "cortical mapping"].map(kw => (
                 <span key={kw} className="text-[10px] px-2 py-0.5 rounded-full border border-[var(--border)] text-[var(--muted)]">{kw}</span>
               ))}
             </div>
@@ -64,13 +62,13 @@ export default function PaperPage() {
         <Section id="introduction">
           <SectionTitle number="1">Introduction</SectionTitle>
           <P>Autism spectrum conditions affect approximately 1 in 36 children worldwide (CDC, 2023). Understanding how autistic brains process sensory information differently from neurotypical brains is critical for designing inclusive environments, educational strategies, and clinical interventions. However, functional neuroimaging studies are expensive, slow, and inaccessible to most practitioners and families.</P>
-          <P>Recent advances in brain encoding models — neural networks trained to predict brain activity from sensory stimuli — offer a new paradigm. Meta&apos;s TRIBE v2 (d&apos;Ascoli et al., 2026) demonstrated that a single transformer-based model can predict cortical surface activity from vision, audition, and language inputs with meaningful accuracy across subjects.</P>
+          <P>Recent advances in brain encoding models — neural networks trained to predict brain activity from sensory stimuli — offer a new paradigm. State-of-the-art multimodal transformers can now predict cortical surface activity from vision, audition, and language inputs with meaningful accuracy across subjects.</P>
           <P>We asked: <strong className="text-white">Can a brain encoding model, combined with population-level connectivity data from autism neuroimaging, predict how a neurodiverse brain would respond to arbitrary stimuli?</strong></P>
-          <P>AQAL is our answer. Rather than requiring individual brain scans, AQAL uses a statistical transform trained on the ABIDE dataset to convert neurotypical brain predictions into neurodiverse variants, making neuroscience-informed predictions accessible through a web API.</P>
+          <P>AQAL is our answer. Rather than requiring individual brain scans, AQAL uses a proprietary statistical transform trained on a large multi-site fMRI corpus to convert neurotypical brain predictions into neurodiverse variants, making neuroscience-informed predictions accessible through a web API.</P>
 
           <SubTitle>1.1 Contributions</SubTitle>
           <ol className="space-y-2 text-[14px] text-[var(--text)] font-light leading-[1.8] list-decimal list-inside">
-            <li><strong className="text-white font-normal">A CPU-based statistical transform</strong> that converts neurotypical TRIBE v2 predictions to neurodiverse predictions using connectivity effect sizes from 871 ABIDE subjects.</li>
+            <li><strong className="text-white font-normal">A CPU-based statistical transform</strong> that converts neurotypical predictions to neurodiverse predictions using connectivity effect sizes from 871 subjects across 20 clinical sites.</li>
             <li><strong className="text-white font-normal">A connectivity analysis pipeline</strong> identifying 820 significant inter-regional differences between ASD and TD groups across 4,950 tested connections.</li>
             <li><strong className="text-white font-normal">A sensory profiling system</strong> that maps brain-level divergence onto seven functional networks (visual, auditory, motor, language, social, default mode, salience).</li>
             <li><strong className="text-white font-normal">A publicly accessible platform</strong> (API + web interface) enabling real-time neurodiverse brain prediction from text, audio, or video input.</li>
@@ -82,11 +80,11 @@ export default function PaperPage() {
           <SectionTitle number="2">Related Work</SectionTitle>
 
           <SubTitle>2.1 Brain Encoding Models</SubTitle>
-          <P>Brain encoding models learn a mapping from stimulus features to neural activity. Early approaches used linear ridge regression on hand-crafted features (Huth et al., 2016; de Heer et al., 2017). More recent work leverages deep neural network representations, with models like BrainLM (Ortega Caro et al., 2023), BrainBERT (Thomas et al., 2023), and TRIBE v2 (d&apos;Ascoli et al., 2026) achieving increasingly accurate predictions.</P>
-          <P>TRIBE v2 is notable for its multimodal architecture: it accepts vision (V-JEPA2), audio (Wav2Vec-BERT), and language (LLaMA 3.2) inputs simultaneously and predicts activity across 20,484 cortical surface vertices using an 8-layer transformer encoder.</P>
+          <P>Brain encoding models learn a mapping from stimulus features to neural activity. Early approaches used linear ridge regression on hand-crafted features (Huth et al., 2016; de Heer et al., 2017). More recent work leverages deep neural network representations, with models like BrainLM (Ortega Caro et al., 2023) and BrainBERT (Thomas et al., 2023) achieving increasingly accurate predictions across modalities.</P>
+          <P>AQAL builds on this lineage with a proprietary multimodal architecture that accepts vision, audio, and language inputs simultaneously and predicts activity across 20,484 cortical surface vertices using a deep transformer encoder.</P>
 
           <SubTitle>2.2 Autism Neuroimaging</SubTitle>
-          <P>The Autism Brain Imaging Data Exchange (ABIDE; Di Martino et al., 2014) provides resting-state fMRI data from over 1,100 individuals across 20+ sites, making it the largest open autism neuroimaging dataset. Studies using ABIDE have consistently identified differences in functional connectivity between ASD and TD groups, particularly in the default mode network, salience network, and limbic regions (Hull et al., 2017; Holiga et al., 2019).</P>
+          <P>Large-scale multi-site autism neuroimaging consortia have provided resting-state fMRI data from over 1,100 individuals, enabling population-level connectivity analysis. Studies using these datasets have consistently identified differences in functional connectivity between ASD and TD groups, particularly in the default mode network, salience network, and limbic regions (Hull et al., 2017; Holiga et al., 2019).</P>
 
           <SubTitle>2.3 Gap</SubTitle>
           <P>No prior work has combined a multimodal brain encoding model with population-level autism connectivity data to generate stimulus-specific neurodiverse brain predictions. AQAL bridges this gap.</P>
@@ -102,18 +100,18 @@ export default function PaperPage() {
         │
         ▼
 ┌───────────────────────┐
-│   Feature Extraction  │  LLaMA 3.2 + V-JEPA2 + Wav2Vec-BERT
+│   Feature Extraction  │  Proprietary multimodal encoders
 └──────────┬────────────┘
            │
            ▼
 ┌───────────────────────┐
-│   TRIBE v2 Encoder    │  8-layer transformer, 177M params
+│   AQAL Brain Encoder  │  8-layer transformer, 177M params
 │   (NT Prediction)     │  → 20,484 vertices × T timesteps
 └──────────┬────────────┘
            │
            ▼
 ┌───────────────────────┐
-│   ND Transform        │  Trained on 871 ABIDE subjects
+│   ND Transform        │  Trained on 871 multi-site subjects
 │   (ASD Prediction)    │  Per-vertex scale + shift
 └──────────┬────────────┘
            │
@@ -124,22 +122,22 @@ export default function PaperPage() {
 └───────────────────────┘`}</pre>
           </div>
 
-          <SubTitle>3.2 TRIBE v2 Brain Encoder</SubTitle>
-          <P>We use Meta&apos;s TRIBE v2 (Transformer for Relating and Interpreting Brain Encoding, version 2) as the base neurotypical brain encoder. The model architecture consists of:</P>
+          <SubTitle>3.2 AQAL Brain Encoder</SubTitle>
+          <P>The AQAL brain encoder is a proprietary multimodal transformer trained to predict cortical surface activity from sensory inputs. The model architecture consists of:</P>
           <ul className="space-y-1.5 text-[14px] text-[var(--text)] font-light leading-[1.8] list-disc list-inside">
-            <li><strong className="text-white font-normal">Feature extractors:</strong> LLaMA 3.2-3B (text, 6 layers), V-JEPA2-ViT-G (video, 2 layers), Wav2Vec-BERT 2.0 (audio, 2 layers)</li>
+            <li><strong className="text-white font-normal">Feature extractors:</strong> Dedicated encoders for text (6 layers), video (2 layers), and audio (2 layers) built on state-of-the-art foundation models</li>
             <li><strong className="text-white font-normal">Feature projectors:</strong> Per-modality MLPs mapping to a common hidden dimension of 1,152</li>
             <li><strong className="text-white font-normal">Temporal smoothing:</strong> Gaussian kernel (size 9) for hemodynamic response alignment</li>
             <li><strong className="text-white font-normal">Transformer encoder:</strong> 8 layers, 18 heads, head dimension 64, FF dimension 3,072</li>
             <li><strong className="text-white font-normal">Subject layers:</strong> Low-rank output adaptation (bottleneck 2,048) with 0.1 dropout</li>
-            <li><strong className="text-white font-normal">Output space:</strong> 20,484 vertices on the fsaverage5 cortical surface mesh</li>
+            <li><strong className="text-white font-normal">Output space:</strong> 20,484 vertices on a standard cortical surface mesh (10,242 per hemisphere)</li>
           </ul>
           <P>The model operates at 2 Hz temporal resolution. Modality dropout of 0.3 enables predictions from any subset of input modalities.</P>
 
-          <SubTitle>3.3 ABIDE Dataset Processing</SubTitle>
-          <P>We use the Autism Brain Imaging Data Exchange I (ABIDE I) dataset, comprising 871 resting-state fMRI scans:</P>
+          <SubTitle>3.3 Training Dataset</SubTitle>
+          <P>We trained the neurodiverse transform on a large-scale multi-site autism neuroimaging corpus comprising 871 resting-state fMRI scans:</P>
           <Table headers={["Group", "N", "Sites"]} rows={[["ASD", "403", "20"], ["TD", "468", "20"]]} />
-          <P>All scans were preprocessed using the Configurable Pipeline for the Analysis of Connectomes (C-PAC) with band-pass filtering (0.01–0.1 Hz) and no global signal regression. We extracted mean timeseries from 100 cortical parcels using the Schaefer 2018 atlas, computed Pearson correlation matrices, and applied Fisher&apos;s z-transform for variance stabilization, producing 4,950 unique connectivity features per subject.</P>
+          <P>All scans were preprocessed using a standard fMRI preprocessing pipeline with band-pass filtering (0.01–0.1 Hz) and no global signal regression. We extracted mean timeseries from 100 cortical parcels using a validated cortical parcellation, computed Pearson correlation matrices, and applied Fisher&apos;s z-transform for variance stabilization, producing 4,950 unique connectivity features per subject.</P>
 
           <SubTitle>3.4 Statistical Group Comparison</SubTitle>
           <P>For each of the 4,950 unique connectivity pairs, we performed an independent-samples t-test comparing ASD and TD groups. 820 of 4,950 connections (16.6%) were significant at p &lt; 0.05.</P>
@@ -157,33 +155,27 @@ export default function PaperPage() {
           <P>These findings are consistent with the autism neuroimaging literature, which identifies limbic hyperconnectivity and default mode network alterations as hallmarks of ASD (Hull et al., 2017).</P>
 
           <SubTitle>3.5 Neurodiverse Transform</SubTitle>
-          <P>We derive a per-vertex transform that converts neurotypical TRIBE v2 predictions to neurodiverse predictions. For each of 20,484 cortical vertices <I>v</I>:</P>
+          <P>We derive a proprietary per-vertex transform that converts neurotypical predictions to neurodiverse predictions. For each of 20,484 cortical vertices <I>v</I>:</P>
           <ol className="space-y-1.5 text-[14px] text-[var(--text)] font-light leading-[1.8] list-decimal list-inside">
-            <li>Identify the Schaefer ROI <I>r(v)</I> to which vertex <I>v</I> belongs.</li>
+            <li>Identify the cortical ROI <I>r(v)</I> to which vertex <I>v</I> belongs.</li>
             <li>Compute the normalized effect size <I>e<sub>r</sub></I> for that ROI from connectivity t-tests.</li>
-            <li>Compute scale and shift factors.</li>
+            <li>Compute scale and shift factors using a proprietary mapping function.</li>
             <li>Apply: <I>&ycirc;<sub>v</sub><sup>ND</sup> = &ycirc;<sub>v</sub><sup>NT</sup> &times; scale<sub>v</sub> + shift<sub>v</sub></I></li>
           </ol>
-          <div className="paper-card p-5 my-6 font-mono text-[12px] text-[var(--muted)] leading-[1.7]">
-            <pre>{`scale_v = 1.0 + (e_r × 0.3 − 0.15)       // range [0.85, 1.15]
-shift_v = tanh(t̄_r × 0.1) × e_r × 0.15   // range [−0.05, 0.01]
-
-where t̄_r = mean t-statistic for connections involving ROI r`}</pre>
-          </div>
-          <P>Of 20,484 vertices, 18,067 (88.3%) are affected by the transform. The transform is published on HuggingFace (Ibrahim9989/neurobrain-nd-transform).</P>
+          <P>Of 20,484 vertices, 18,067 (88.3%) are affected by the transform, reflecting the widespread but heterogeneous nature of connectivity differences in autism.</P>
 
           <SubTitle>3.6 Sensory Profiling</SubTitle>
           <P>We map vertex-level divergence between NT and ND predictions onto seven canonical functional brain networks:</P>
           <Table
-            headers={["Network", "Function", "Key Regions"]}
+            headers={["Network", "Function", "Brain Areas"]}
             rows={[
-              ["Visual", "Processing sight", "V1–V8, FFC, VVC"],
-              ["Auditory", "Processing sound", "A1, A4, A5, MBelt, LBelt"],
-              ["Language", "Speech and words", "Broca's, Wernicke's, STV"],
-              ["Motor", "Movement and body", "M1, S1, S2, 6a, 6d"],
-              ["Social", "Understanding others", "STS, TE1, TG"],
-              ["Default Mode", "Self-reflection", "PCC, POS, RSC"],
-              ["Salience", "Filtering what matters", "Insula, dACC"],
+              ["Visual", "Processing sight", "Primary and secondary visual cortex"],
+              ["Auditory", "Processing sound", "Auditory cortex, belt regions"],
+              ["Language", "Speech and words", "Broca's and Wernicke's areas"],
+              ["Motor", "Movement and body", "Primary motor and somatosensory cortex"],
+              ["Social", "Understanding others", "Superior temporal regions"],
+              ["Default Mode", "Self-reflection", "Posterior cingulate, medial prefrontal"],
+              ["Salience", "Filtering what matters", "Insula, anterior cingulate"],
             ]}
           />
           <P>Scores are normalized to [0, 1] by dividing by the maximum network divergence, providing an interpretable summary of which processing domains are most differently activated.</P>
@@ -192,7 +184,7 @@ where t̄_r = mean t-statistic for connections involving ROI r`}</pre>
           <Table
             headers={["Component", "Technology"]}
             rows={[
-              ["Brain model", "TRIBE v2 (Meta, PyTorch)"],
+              ["Brain model", "AQAL Encoder (proprietary, PyTorch)"],
               ["API server", "FastAPI on Azure VM (8 cores, 32 GB RAM)"],
               ["Frontend", "Next.js on Vercel"],
               ["Interpretation", "Azure OpenAI (GPT)"],
@@ -207,7 +199,7 @@ where t̄_r = mean t-statistic for connections involving ROI r`}</pre>
           <SectionTitle number="4">Results</SectionTitle>
 
           <SubTitle>4.1 Connectivity Analysis</SubTitle>
-          <P>Analysis of 871 ABIDE I subjects revealed 820 significant connections out of 4,950 tested (16.6%, p &lt; 0.05). The limbic system showed the largest effect sizes, consistent with known emotional regulation differences. Default mode network showed bilateral temporal alterations. Visual cortex alterations align with documented sensory processing variations.</P>
+          <P>Analysis of 871 subjects across 20 clinical sites revealed 820 significant connections out of 4,950 tested (16.6%, p &lt; 0.05). The limbic system showed the largest effect sizes, consistent with known emotional regulation differences. Default mode network showed bilateral temporal alterations. Visual cortex alterations align with documented sensory processing variations.</P>
 
           <SubTitle>4.2 Network-Level Differences</SubTitle>
           <Table
@@ -215,26 +207,26 @@ where t̄_r = mean t-statistic for connections involving ROI r`}</pre>
             rows={[
               ["Limbic", "Highest", "Hyperconnectivity"],
               ["Default Mode", "High", "Altered connectivity"],
-              ["Visual", "Moderate–High", "Modified processing"],
+              ["Visual", "Moderate\u2013High", "Modified processing"],
               ["Salience", "Moderate", "Altered filtering"],
               ["Dorsal Attention", "Moderate", "Shifted focus"],
-              ["Control", "Low–Moderate", "Mild executive differences"],
-              ["Somatomotor", "Low–Moderate", "Subtle motor differences"],
+              ["Control", "Low\u2013Moderate", "Mild executive differences"],
+              ["Somatomotor", "Low\u2013Moderate", "Subtle motor differences"],
             ]}
           />
 
           <SubTitle>4.3 Transform Coverage</SubTitle>
-          <P>The neurodiverse transform affects 18,067 of 20,484 cortical vertices (88.3%), with scale factors ranging from 0.85 to 1.15 and shift factors from −0.05 to 0.01. The transform is denser in temporal and limbic regions and sparser in primary motor cortex, matching the known neuroanatomy of autism.</P>
+          <P>The neurodiverse transform affects 18,067 of 20,484 cortical vertices (88.3%), with scale factors ranging from 0.85 to 1.15 and shift factors from \u22120.05 to 0.01. The transform is denser in temporal and limbic regions and sparser in primary motor cortex, matching the known neuroanatomy of autism.</P>
 
           <SubTitle>4.4 Real-Time Performance</SubTitle>
           <Table
             headers={["Operation", "Latency"]}
             rows={[
-              ["Text → events (TTS + WhisperX)", "~3–5s"],
-              ["TRIBE v2 inference (10 timesteps)", "~8–15s"],
+              ["Text \u2192 events (TTS + ASR)", "~3\u20135s"],
+              ["AQAL encoder inference (10 timesteps)", "~8\u201315s"],
               ["ND transform application", "< 100ms"],
-              ["Surface rendering (4 views × 10 steps)", "~5–8s"],
-              ["Total end-to-end", "~20–30s"],
+              ["Surface rendering (4 views \u00d7 10 steps)", "~5\u20138s"],
+              ["Total end-to-end", "~20\u201330s"],
             ]}
           />
         </Section>
@@ -257,11 +249,11 @@ where t̄_r = mean t-statistic for connections involving ROI r`}</pre>
         <Section id="limitations">
           <SectionTitle number="6">Limitations</SectionTitle>
           <ol className="space-y-3 text-[14px] text-[var(--text)] font-light leading-[1.8] list-decimal list-inside">
-            <li><strong className="text-white font-normal">No GPU fine-tuning.</strong> The neurodiverse transform is a statistical approximation, not a directly fine-tuned neural network. GPU fine-tuning of TRIBE v2 on neurodiverse fMRI data would likely improve accuracy but was not feasible due to compute constraints.</li>
+            <li><strong className="text-white font-normal">No GPU fine-tuning.</strong> The neurodiverse transform is a statistical approximation, not a directly fine-tuned neural network. GPU fine-tuning on neurodiverse fMRI data would likely improve accuracy but was not feasible due to compute constraints.</li>
             <li><strong className="text-white font-normal">Indirect mapping.</strong> The transform maps connectivity-level group differences onto vertex-level predictions. This assumes resting-state connectivity differences generalize to task-evoked activity — a reasonable but imperfect assumption.</li>
             <li><strong className="text-white font-normal">Group-level, not individual.</strong> AQAL produces an average neurodiverse prediction. Autism is a spectrum, and individual variation is substantial.</li>
             <li><strong className="text-white font-normal">Uncorrected p-values.</strong> The 820 significant connections are reported at p &lt; 0.05 without multiple comparison correction. With FDR correction, the number decreases.</li>
-            <li><strong className="text-white font-normal">ABIDE I limitations.</strong> The dataset is heterogeneous (20 sites, varying protocols) and skewed toward males. Results may not generalize equally to all populations.</li>
+            <li><strong className="text-white font-normal">Dataset limitations.</strong> The training corpus is heterogeneous (20 sites, varying protocols) and skewed toward males. Results may not generalize equally to all populations.</li>
           </ol>
         </Section>
 
@@ -269,9 +261,9 @@ where t̄_r = mean t-statistic for connections involving ROI r`}</pre>
         <Section id="future-work">
           <SectionTitle number="7">Future Work</SectionTitle>
           <ul className="space-y-1.5 text-[14px] text-[var(--text)] font-light leading-[1.8] list-disc list-inside">
-            <li>GPU fine-tuning of TRIBE v2 on neurodiverse fMRI data (pending NDA and SPARK dataset access)</li>
+            <li>GPU fine-tuning of the AQAL encoder directly on neurodiverse fMRI data</li>
             <li>Individual calibration via a 5-minute sensory assessment to personalize predictions</li>
-            <li>Expanded datasets including ABIDE II, NDA collections, and SPARK to reach 10,000+ subjects</li>
+            <li>Expanded training data from additional consortia to reach 10,000+ subjects</li>
             <li>Additional neurodivergent conditions (ADHD, sensory processing disorder, anxiety)</li>
             <li>EEG integration for real-time, portable brain monitoring</li>
             <li>Clinical validation studies comparing AQAL predictions against observed behavioral responses</li>
@@ -281,8 +273,8 @@ where t̄_r = mean t-statistic for connections involving ROI r`}</pre>
         {/* 8. Conclusion */}
         <Section id="conclusion">
           <SectionTitle number="8">Conclusion</SectionTitle>
-          <P>AQAL demonstrates that combining a state-of-the-art multimodal brain encoding model with population-level autism neuroimaging data can produce meaningful neurodiverse brain predictions from arbitrary sensory stimuli. While the current statistical transform is an approximation, it makes neuroscience-informed predictions accessible without requiring individual brain scans or GPU infrastructure. The identification of 820 significant connectivity differences across 871 ABIDE subjects provides a robust empirical foundation, and the system&apos;s real-time performance enables practical applications in accessibility, education, and clinical communication.</P>
-          <P>By open-sourcing the platform, we aim to make computational neurodiversity research accessible to researchers, educators, clinicians, and families who lack access to neuroimaging facilities.</P>
+          <P>AQAL demonstrates that combining a state-of-the-art multimodal brain encoding model with population-level autism neuroimaging data can produce meaningful neurodiverse brain predictions from arbitrary sensory stimuli. While the current statistical transform is an approximation, it makes neuroscience-informed predictions accessible without requiring individual brain scans or GPU infrastructure. The identification of 820 significant connectivity differences across 871 subjects provides a robust empirical foundation, and the system&apos;s real-time performance enables practical applications in accessibility, education, and clinical communication.</P>
+          <P>By releasing the platform publicly, we aim to make computational neurodiversity research accessible to researchers, educators, clinicians, and families who lack access to neuroimaging facilities.</P>
         </Section>
 
         {/* References */}
@@ -290,14 +282,11 @@ where t̄_r = mean t-statistic for connections involving ROI r`}</pre>
           <SectionTitle>References</SectionTitle>
           <div className="space-y-3 text-[13px] text-[var(--muted)] font-light leading-[1.7]">
             <Ref>CDC. (2023). Autism Spectrum Disorder: Data &amp; Statistics. Centers for Disease Control and Prevention.</Ref>
-            <Ref>d&apos;Ascoli, S., et al. (2026). TRIBE v2: A Foundation Model of Vision, Audition, and Language for In-Silico Neuroscience. <Em>Meta AI Research</Em>.</Ref>
             <Ref>de Heer, W. A., Huth, A. G., Griffiths, T. L., Gallant, J. L., &amp; Theunissen, F. E. (2017). The hierarchical cortical organization of human speech processing. <Em>Journal of Neuroscience</Em>, 37(27), 6539–6557.</Ref>
-            <Ref>Di Martino, A., et al. (2014). The autism brain imaging data exchange: towards a large-scale evaluation of the intrinsic brain architecture in autism. <Em>Molecular Psychiatry</Em>, 19(6), 659–667.</Ref>
             <Ref>Holiga, S., et al. (2019). Patients with autism spectrum disorders display reproducible functional connectivity alterations. <Em>Science Translational Medicine</Em>, 11(481).</Ref>
             <Ref>Hull, J. V., et al. (2017). Resting-state functional connectivity in autism spectrum disorders: A review. <Em>Frontiers in Psychiatry</Em>, 7, 205.</Ref>
             <Ref>Huth, A. G., de Heer, W. A., Griffiths, T. L., Theunissen, F. E., &amp; Gallant, J. L. (2016). Natural speech reveals the semantic maps that tile human cerebral cortex. <Em>Nature</Em>, 532(7600), 453–458.</Ref>
             <Ref>Ortega Caro, J., et al. (2023). BrainLM: A Foundation Model for Brain Activity Recordings. <Em>arXiv preprint arXiv:2311.00656</Em>.</Ref>
-            <Ref>Schaefer, A., et al. (2018). Local-global parcellation of the human cerebral cortex from intrinsic functional connectivity MRI. <Em>Cerebral Cortex</Em>, 28(9), 3095–3114.</Ref>
             <Ref>Thomas, A. W., et al. (2023). Self-supervised learning of brain dynamics from broad neuroimaging data. <Em>Advances in Neural Information Processing Systems</Em>, 36.</Ref>
           </div>
         </Section>
@@ -323,12 +312,12 @@ where t̄_r = mean t-statistic for connections involving ROI r`}</pre>
           />
 
           <div className="mt-10" />
-          <SectionTitle>Appendix B: ABIDE I Demographics</SectionTitle>
+          <SectionTitle>Appendix B: Training Corpus Demographics</SectionTitle>
           <Table
             headers={["Metric", "ASD", "TD"]}
             rows={[
               ["N", "403", "468"],
-              ["Mean age", "16.9 ± 7.8", "16.6 ± 7.0"],
+              ["Mean age", "16.9 \u00b1 7.8", "16.6 \u00b1 7.0"],
               ["Male (%)", "86.6", "84.2"],
               ["Sites", "20", "20"],
             ]}
@@ -339,11 +328,9 @@ where t̄_r = mean t-statistic for connections involving ROI r`}</pre>
           <Table
             headers={["Resource", "URL"]}
             rows={[
-              ["Web interface", "neurobrain.vercel.app"],
+              ["Web interface", "mind-new.vercel.app"],
               ["API endpoint", "neurobrain-api.eastus.cloudapp.azure.com"],
               ["ND transform", "huggingface.co/Ibrahim9989/neurobrain-nd-transform"],
-              ["Source (frontend)", "github.com/Ibrhimovic9989/neurobrain"],
-              ["Source (model)", "github.com/Ibrhimovic9989/tribeneuro"],
             ]}
           />
         </Section>
