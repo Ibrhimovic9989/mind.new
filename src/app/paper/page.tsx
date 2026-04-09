@@ -15,8 +15,12 @@ export default function PaperPage() {
             AQAL: A Foundation Model Approach to Predicting{" "}
             <span className="gradient-text">Neurodiverse Brain Activity</span>
           </h1>
-          <div className="text-[14px] text-[var(--muted)] font-light space-y-1">
-            <p className="text-[var(--text)] font-normal">Ibrahim Raza</p>
+          <div className="text-[14px] text-[var(--muted)] font-light space-y-2">
+            <div className="flex items-center justify-center gap-4">
+              <a href="https://www.linkedin.com/in/mohammed-ibrahim-raza-2a560b248" target="_blank" rel="noopener noreferrer" className="text-[var(--text)] font-normal hover:text-[var(--accent)] transition">Ibrahim Raza</a>
+              <span className="text-[var(--border)]">&middot;</span>
+              <a href="https://www.linkedin.com/in/merajf/" target="_blank" rel="noopener noreferrer" className="text-[var(--text)] font-normal hover:text-[var(--accent)] transition">Meraj Faheem</a>
+            </div>
             <p>Leeza Care Research &amp; Development Foundation</p>
           </div>
         </header>
