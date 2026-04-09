@@ -185,10 +185,9 @@ export default function PaperPage() {
             headers={["Component", "Technology"]}
             rows={[
               ["Brain model", "AQAL Encoder (proprietary, PyTorch)"],
-              ["API server", "FastAPI on Azure VM (8 cores, 32 GB RAM)"],
+              ["API server", "Cloud VM (8 cores, 32 GB RAM)"],
               ["Frontend", "Next.js on Vercel"],
-              ["Interpretation", "Azure OpenAI (GPT)"],
-              ["Model hosting", "HuggingFace Hub"],
+              ["Interpretation", "LLM-powered (GPT)"],
             ]}
           />
           <P>All inference runs on CPU. No GPU is required.</P>
@@ -329,8 +328,6 @@ export default function PaperPage() {
             headers={["Resource", "URL"]}
             rows={[
               ["Web interface", "mind-new.vercel.app"],
-              ["API endpoint", "neurobrain-api.eastus.cloudapp.azure.com"],
-              ["ND transform", "huggingface.co/Ibrahim9989/neurobrain-nd-transform"],
             ]}
           />
         </Section>
