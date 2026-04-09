@@ -54,30 +54,62 @@ function Dv() { return <div className="h-px bg-[var(--border)] max-w-[1024px] mx
 /* ─── NAV ─── */
 function Nav() {
   const [s, setS] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => { const h = () => setS(window.scrollY > 40); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
+  const links = [
+    { href: "#research", label: "Research" },
+    { href: "#capabilities", label: "Capabilities" },
+    { href: "#products", label: "Products" },
+    { href: "#roadmap", label: "Roadmap" },
+    { href: "/paper", label: "Paper" },
+    { href: "https://neuro.mind.new", label: "NeuroBrain" },
+    { href: "https://sensory.mind.new", label: "Sensory Audit" },
+  ];
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${s ? "bg-[#050507]/80 backdrop-blur-xl border-b border-[var(--border)]" : ""}`}>
-      <div className="max-w-[1024px] mx-auto px-6 h-14 flex items-center justify-between">
-        <div className="flex items-center gap-1">
-          <img src="/brainlogo.png" alt="" className="h-9 w-9 object-contain" />
-          <span className="text-[28px] tracking-tight leading-none" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 500 }}>
-            <span className="gradient-text">mind</span>
-            <span className="text-[#52525b]" style={{ fontStyle: "normal" }}>.</span>
-            <span className="text-[#d4d4d8] font-light">new</span>
-          </span>
+    <>
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${s || open ? "bg-[#050507]/80 backdrop-blur-xl border-b border-[var(--border)]" : ""}`}>
+        <div className="max-w-[1024px] mx-auto px-6 h-14 flex items-center justify-between">
+          <div className="flex items-center gap-1">
+            <img src="/brainlogo.png" alt="" className="h-9 w-9 object-contain" />
+            <span className="text-[28px] tracking-tight leading-none" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 500 }}>
+              <span className="gradient-text">mind</span>
+              <span className="text-[#52525b]" style={{ fontStyle: "normal" }}>.</span>
+              <span className="text-[#d4d4d8] font-light">new</span>
+            </span>
+          </div>
+          <div className="hidden md:flex items-center gap-7 text-[13px] text-[var(--muted)]">
+            {links.map((l) => <a key={l.href} href={l.href} className="hover:text-white transition">{l.label}</a>)}
+          </div>
+          <div className="flex items-center gap-3">
+            <a href="#contact" className="hidden sm:inline text-[13px] px-4 py-1.5 rounded-full border border-white/10 text-[var(--muted)] hover:text-white hover:border-white/20 transition">Request Access</a>
+            <button onClick={() => setOpen(!open)} className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg hover:bg-white/5 transition" aria-label="Menu">
+              {open ? (
+                <svg className="w-5 h-5 text-[var(--text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" /></svg>
+              ) : (
+                <svg className="w-5 h-5 text-[var(--text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M4 6h16M4 12h16M4 18h16" /></svg>
+              )}
+            </button>
+          </div>
         </div>
-        <div className="hidden md:flex items-center gap-7 text-[13px] text-[var(--muted)]">
-          <a href="#research" className="hover:text-white transition">Research</a>
-          <a href="#capabilities" className="hover:text-white transition">Capabilities</a>
-          <a href="#products" className="hover:text-white transition">Products</a>
-          <a href="#roadmap" className="hover:text-white transition">Roadmap</a>
-          <a href="/paper" className="hover:text-white transition">Paper</a>
-          <a href="https://neuro.mind.new" className="hover:text-white transition">NeuroBrain</a>
-          <a href="https://sensory.mind.new" className="hover:text-white transition">Sensory Audit</a>
-        </div>
-        <a href="#contact" className="text-[13px] px-4 py-1.5 rounded-full border border-white/10 text-[var(--muted)] hover:text-white hover:border-white/20 transition">Request Access</a>
-      </div>
-    </nav>
+        {/* Mobile menu */}
+        {open && (
+          <div className="md:hidden border-t border-[var(--border)] bg-[#050507]/95 backdrop-blur-xl">
+            <div className="max-w-[1024px] mx-auto px-6 py-4 flex flex-col gap-1">
+              {links.map((l) => (
+                <a key={l.href} href={l.href} onClick={() => setOpen(false)}
+                  className="text-[14px] text-[var(--muted)] hover:text-white py-2.5 px-3 rounded-lg hover:bg-white/5 transition font-light">
+                  {l.label}
+                </a>
+              ))}
+              <a href="#contact" onClick={() => setOpen(false)}
+                className="text-[14px] text-[var(--accent)] py-2.5 px-3 rounded-lg hover:bg-white/5 transition font-medium mt-1">
+                Request Access
+              </a>
+            </div>
+          </div>
+        )}
+      </nav>
+    </>
   );
 }
 
