@@ -58,7 +58,7 @@ export default function BrainDemo() {
       <div className="flex items-center justify-between gap-2 mb-2 sm:mb-3">
         <div>
           <div className="text-[8px] sm:text-[10px] text-[var(--accent)] font-medium tracking-widest uppercase">Live Demo</div>
-          <h3 className="text-[12px] sm:text-[16px] font-medium text-white">See Cortex in Action</h3>
+          <h3 className="text-[12px] sm:text-[16px] font-medium text-white">See AQAL in Action</h3>
         </div>
         <div className="flex gap-0.5 sm:gap-1 p-0.5 rounded-lg bg-white/[0.03] border border-[var(--border)]">
           {[{ id: "nt" as const, l: "NT" }, { id: "nd" as const, l: "ND" }, { id: "compare" as const, l: "Both" }].map((m) => (
