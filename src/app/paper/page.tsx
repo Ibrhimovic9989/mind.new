@@ -327,7 +327,9 @@ export default function PaperPage() {
           <Table
             headers={["Resource", "URL"]}
             rows={[
-              ["Web interface", "mind-new.vercel.app"],
+              ["Landing page", "mind.new"],
+              ["NeuroBrain", "neuro.mind.new"],
+              ["Sensory Audit", "sensory.mind.new"],
             ]}
           />
         </Section>
