@@ -37,6 +37,12 @@ h1, h2, h3 { font-weight: 500; color: #fafafa; letter-spacing: -0.02em; }
 }
 .card:hover { border-color: rgba(124, 106, 255, 0.2); transform: translateY(-2px); }
 
+.paper-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
 .divider { height: 1px; background: var(--border); max-width: 1024px; margin: 0 auto; }
 
 /* Scroll animations */

@@ -71,6 +71,7 @@ function Nav() {
           <a href="#capabilities" className="hover:text-white transition">Capabilities</a>
           <a href="#products" className="hover:text-white transition">Products</a>
           <a href="#roadmap" className="hover:text-white transition">Roadmap</a>
+          <a href="/paper" className="hover:text-white transition">Paper</a>
         </div>
         <a href="#contact" className="text-[13px] px-4 py-1.5 rounded-full border border-white/10 text-[var(--muted)] hover:text-white hover:border-white/20 transition">Request Access</a>
       </div>
