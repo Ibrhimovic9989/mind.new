@@ -60,8 +60,9 @@ function Nav() {
     { href: "#research", label: "Research" },
     { href: "#capabilities", label: "Capabilities" },
     { href: "#products", label: "Products" },
-    { href: "#roadmap", label: "Roadmap" },
+    { href: "#roadmap", label: "Timeline" },
     { href: "/paper", label: "Paper" },
+    { href: "/roadmap", label: "Roadmap" },
     { href: "https://neuro.mind.new", label: "NeuroBrain" },
     { href: "https://sensory.mind.new", label: "Sensory Audit" },
   ];
