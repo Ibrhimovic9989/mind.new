@@ -30,7 +30,7 @@ export default function PaperPage() {
           <SectionTitle>Abstract</SectionTitle>
           <div className="paper-card p-6">
             <p className="text-[14px] leading-[1.85] text-[var(--text)] font-light">
-              We present AQAL, a computational system that predicts how neurodiverse (autistic) brains process sensory stimuli by combining a proprietary multimodal brain encoding model (177M parameters) with a statistical neurodiverse transform derived from 871 resting-state fMRI scans from a large-scale multi-site autism neuroimaging consortium. AQAL maps text, audio, and video inputs onto 20,484 cortical surface vertices and generates both neurotypical and neurodiverse brain activation predictions in real time. Our connectivity analysis identifies 820 statistically significant inter-regional differences (p &lt; 0.05) between ASD and typically-developing groups across 100 cortical parcels, with the limbic temporal pole, default mode network, and visual cortex showing the largest effect sizes. We further introduce a sensory profiling module that quantifies divergence across seven canonical brain networks, enabling practical applications in accessibility auditing and personalized accommodation design.
+              We present AQAL, a computational system that predicts how neurodiverse (autistic) brains process sensory stimuli by combining a proprietary multimodal brain encoding model (177M parameters) with a statistical neurodiverse transform derived from 871 resting-state fMRI scans from a large-scale multi-site autism neuroimaging consortium. AQAL maps text, audio, and video inputs onto 20,484 cortical surface vertices and generates both neurotypical and neurodiverse brain activation predictions in real time. Our connectivity analysis identifies 387 FDR-corrected significant connections (q &lt; 0.05) between ASD and typically-developing groups across 4,950 tested pairs, with site harmonization and age/sex covariates applied across 100 cortical parcels, with the limbic temporal pole, default mode network, and visual cortex showing the largest effect sizes. We further introduce a sensory profiling module that quantifies divergence across seven canonical brain networks, enabling practical applications in accessibility auditing and personalized accommodation design.
             </p>
             <div className="flex flex-wrap gap-2 mt-5">
               {["neurodiversity", "autism", "brain encoding", "fMRI", "foundation model", "sensory processing", "cortical mapping"].map(kw => (
@@ -73,7 +73,7 @@ export default function PaperPage() {
           <SubTitle>1.1 Contributions</SubTitle>
           <ol className="space-y-2 text-[14px] text-[var(--text)] font-light leading-[1.8] list-decimal list-inside">
             <li><strong className="text-white font-normal">A CPU-based statistical transform</strong> that converts neurotypical predictions to neurodiverse predictions using connectivity effect sizes from 871 subjects across 20 clinical sites.</li>
-            <li><strong className="text-white font-normal">A connectivity analysis pipeline</strong> identifying 820 significant inter-regional differences between ASD and TD groups across 4,950 tested connections.</li>
+            <li><strong className="text-white font-normal">A connectivity analysis pipeline</strong> identifying 387 FDR-corrected significant connections (1,065 uncorrected) between ASD and TD groups across 4,950 tested pairs, with site harmonization and age/sex covariates.</li>
             <li><strong className="text-white font-normal">A sensory profiling system</strong> that maps brain-level divergence onto seven functional networks (visual, auditory, motor, language, social, default mode, salience).</li>
             <li><strong className="text-white font-normal">A publicly accessible platform</strong> (API + web interface) enabling real-time neurodiverse brain prediction from text, audio, or video input.</li>
           </ol>
@@ -144,7 +144,7 @@ export default function PaperPage() {
           <P>All scans were preprocessed using a standard fMRI preprocessing pipeline with band-pass filtering (0.01–0.1 Hz) and no global signal regression. We extracted mean timeseries from 100 cortical parcels using a validated cortical parcellation, computed Pearson correlation matrices, and applied Fisher&apos;s z-transform for variance stabilization, producing 4,950 unique connectivity features per subject.</P>
 
           <SubTitle>3.4 Statistical Group Comparison</SubTitle>
-          <P>For each of the 4,950 unique connectivity pairs, we performed an independent-samples t-test comparing ASD and TD groups. 820 of 4,950 connections (16.6%) were significant at p &lt; 0.05.</P>
+          <P>For each of the 4,950 unique connectivity pairs, we performed independent-samples t-tests with age and sex as covariates and site effects residualized. After Benjamini-Hochberg FDR correction (q &lt; 0.05), 387 of 4,950 connections (7.8%) survived. For reference, 1,065 (21.5%) were significant uncorrected, and 48 (1.0%) survived Bonferroni correction.</P>
           <P>The most affected regions ranked by normalized effect size:</P>
           <Table
             headers={["Rank", "Region", "Network", "Effect"]}
@@ -202,7 +202,7 @@ export default function PaperPage() {
           <SectionTitle number="4">Results</SectionTitle>
 
           <SubTitle>4.1 Connectivity Analysis</SubTitle>
-          <P>Analysis of 871 subjects across 20 clinical sites revealed 820 significant connections out of 4,950 tested (16.6%, p &lt; 0.05). The limbic system showed the largest effect sizes, consistent with known emotional regulation differences. Default mode network showed bilateral temporal alterations. Visual cortex alterations align with documented sensory processing variations.</P>
+          <P>Analysis of 871 subjects across 20 clinical sites, with site harmonization and age/sex covariates, revealed 387 FDR-corrected significant connections out of 4,950 tested (7.8%, q &lt; 0.05). The limbic system showed the largest effect sizes, consistent with known emotional regulation differences. Default mode network showed bilateral temporal alterations. Age-stratified analysis showed the strongest signal in adolescents (12-18): 73 FDR connections from 174 ASD + 209 TD subjects. Children (0-12) yielded 0 FDR connections — insufficient power with 106 ASD + 116 TD subjects.</P>
 
           <SubTitle>4.2 Network-Level Differences</SubTitle>
           <Table
@@ -263,7 +263,7 @@ export default function PaperPage() {
           <P>Autism is inherently heterogeneous. AQAL produces a single, generalized neurodiverse prediction by shifting a neurotypical baseline — this risks stereotyping neurodivergent processing. The same transform is applied to 88.3% of cortical vertices regardless of the individual. A 5-minute individual calibration module is planned but not yet validated.</P>
 
           <SubTitle>6.4 Statistical Rigor</SubTitle>
-          <P>The 820 significant connections reported in v0.1 use uncorrected p-values (p &lt; 0.05) across 4,950 tests. With hundreds of false positives expected by chance, this is scientifically loose. We have developed a v4 training pipeline that applies FDR correction (Benjamini-Hochberg), site harmonization, and age/sex covariates — the corrected count will be lower, but the surviving connections will be reliable. We report both corrected and uncorrected maps for transparency.</P>
+          <P>The v0.1 release reported 820 uncorrected connections (p &lt; 0.05). After implementing FDR correction, site harmonization, and age/sex covariates in v0.2, this drops to 387 FDR-corrected connections (q &lt; 0.05) — 1,065 uncorrected, 48 Bonferroni. The surviving 387 are reliable; the core findings in limbic and default mode networks persist. We publish both corrected and uncorrected maps for transparency. Bootstrap confidence intervals (200 iterations) yield a mean 95% CI width of 0.027 across 20,484 vertices.</P>
 
           <SubTitle>6.5 No Behavioral Ground Truth</SubTitle>
           <P>There is no validation that predicted ND divergence correlates with actual sensory overload, eye-tracking data, or caregiver report. Without behavioral validation, AQAL is a visualization engine, not a clinical tool. Prospective studies comparing predictions against physiological markers (pupil dilation, galvanic skin response, heart rate variability) are a prerequisite for any clinical claims.</P>
