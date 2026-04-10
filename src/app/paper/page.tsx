@@ -50,8 +50,8 @@ export default function PaperPage() {
               ["3", "Methods", "methods"],
               ["4", "Results", "results"],
               ["5", "Applications", "applications"],
-              ["6", "Limitations", "limitations"],
-              ["7", "Future Work", "future-work"],
+              ["6", "Limitations & Critique", "limitations"],
+              ["7", "Roadmap", "roadmap"],
               ["8", "Conclusion", "conclusion"],
             ].map(([num, title, id]) => (
               <a key={id} href={`#${id}`} className="flex items-center gap-3 p-2.5 rounded-lg hover:bg-white/[0.03] transition group">
@@ -248,36 +248,82 @@ export default function PaperPage() {
           <P>The sensory profile output provides a quantitative, brain-data-grounded framework for communicating how a neurodiverse individual might experience specific stimuli — replacing subjective descriptions with measurable network-level predictions.</P>
         </Section>
 
-        {/* 6. Limitations */}
+        {/* 6. Limitations & Critique */}
         <Section id="limitations">
-          <SectionTitle number="6">Limitations</SectionTitle>
-          <ol className="space-y-3 text-[14px] text-[var(--text)] font-light leading-[1.8] list-decimal list-inside">
-            <li><strong className="text-white font-normal">No GPU fine-tuning.</strong> The neurodiverse transform is a statistical approximation, not a directly fine-tuned neural network. GPU fine-tuning on neurodiverse fMRI data would likely improve accuracy but was not feasible due to compute constraints.</li>
-            <li><strong className="text-white font-normal">Indirect mapping.</strong> The transform maps connectivity-level group differences onto vertex-level predictions. This assumes resting-state connectivity differences generalize to task-evoked activity — a reasonable but imperfect assumption.</li>
-            <li><strong className="text-white font-normal">Group-level, not individual.</strong> AQAL produces an average neurodiverse prediction. Autism is a spectrum, and individual variation is substantial.</li>
-            <li><strong className="text-white font-normal">Uncorrected p-values.</strong> The 820 significant connections are reported at p &lt; 0.05 without multiple comparison correction. With FDR correction, the number decreases.</li>
-            <li><strong className="text-white font-normal">Dataset limitations.</strong> The training corpus is heterogeneous (20 sites, varying protocols) and skewed toward males. Results may not generalize equally to all populations.</li>
-          </ol>
+          <SectionTitle number="6">Limitations &amp; Critique</SectionTitle>
+          <P>We present an honest assessment of the structural weaknesses in AQAL v0.1. These are not caveats — they are the core problems that must be solved before AQAL can move beyond an accessibility heuristic toward clinical utility.</P>
+
+          <SubTitle>6.1 The Transform is Statistics, Not Learning</SubTitle>
+          <P>AQAL multiplies a neurotypical prediction by a fixed map derived from t-tests. This is a linear approximation that discards covariance structure between brain regions. A properly fine-tuned conditional encoder would learn the neurodiverse manifold directly from task fMRI, rather than patching a neurotypical prediction after the fact. GPU fine-tuning was not feasible due to compute constraints, but it is the single most important improvement needed.</P>
+
+          <SubTitle>6.2 Resting-State to Task-Evoked Leap</SubTitle>
+          <P>The transform extracts connectivity differences from resting-state fMRI (brains doing nothing) and applies them to task-evoked predictions (brains actively processing stimuli). This assumes that resting wiring differences map perfectly to how the brain processes real-time input — a major, imperfect assumption. While resting-state connectivity correlates with task-evoked patterns in the literature, the relationship is not one-to-one, and the degree of error this introduces is unquantified.</P>
+
+          <SubTitle>6.3 The &ldquo;Average&rdquo; Neurodiverse Brain</SubTitle>
+          <P>Autism is inherently heterogeneous. AQAL produces a single, generalized neurodiverse prediction by shifting a neurotypical baseline — this risks stereotyping neurodivergent processing. The same transform is applied to 88.3% of cortical vertices regardless of the individual. A 5-minute individual calibration module is planned but not yet validated.</P>
+
+          <SubTitle>6.4 Statistical Rigor</SubTitle>
+          <P>The 820 significant connections reported in v0.1 use uncorrected p-values (p &lt; 0.05) across 4,950 tests. With hundreds of false positives expected by chance, this is scientifically loose. We have developed a v4 training pipeline that applies FDR correction (Benjamini-Hochberg), site harmonization, and age/sex covariates — the corrected count will be lower, but the surviving connections will be reliable. We report both corrected and uncorrected maps for transparency.</P>
+
+          <SubTitle>6.5 No Behavioral Ground Truth</SubTitle>
+          <P>There is no validation that predicted ND divergence correlates with actual sensory overload, eye-tracking data, or caregiver report. Without behavioral validation, AQAL is a visualization engine, not a clinical tool. Prospective studies comparing predictions against physiological markers (pupil dilation, galvanic skin response, heart rate variability) are a prerequisite for any clinical claims.</P>
+
+          <SubTitle>6.6 Dataset Limitations</SubTitle>
+          <P>The training corpus is heterogeneous (20 sites, varying protocols, 86.6% male). Age ranges are mixed without stratification. Results may not generalize to females, young children, or underrepresented populations. Site harmonization and age-stratified transforms are in development.</P>
         </Section>
 
-        {/* 7. Future Work */}
-        <Section id="future-work">
-          <SectionTitle number="7">Future Work</SectionTitle>
+        {/* 7. Roadmap */}
+        <Section id="roadmap">
+          <SectionTitle number="7">Roadmap</SectionTitle>
+          <P>Based on expert review, we divide the improvement plan into two tracks: what can be done on CPU (statistical and validation work) and what requires GPU compute (model retraining).</P>
+
+          <SubTitle>7.1 Without GPU — Fix the Science</SubTitle>
+          <ol className="space-y-2 text-[14px] text-[var(--text)] font-light leading-[1.8] list-decimal list-inside">
+            <li><strong className="text-white font-normal">FDR-corrected connectivity map.</strong> Re-run all 4,950 tests with Benjamini-Hochberg correction, site as random effect, age and sex as covariates. Publish both corrected and uncorrected maps.</li>
+            <li><strong className="text-white font-normal">Age stratification.</strong> Split the 871 subjects into developmental bands (child, adolescent, adult) and compute separate transforms per band. No retraining — just regrouping the per-vertex factors.</li>
+            <li><strong className="text-white font-normal">Uncertainty quantification.</strong> Bootstrap the transform (200+ iterations) to produce 95% credible intervals for each of 20,484 vertices. Propagate uncertainty to the seven network scores so the UI can display confidence ranges.</li>
+            <li><strong className="text-white font-normal">5-minute individual calibration.</strong> Design a standardized stimulus set, collect brief behavioral or low-cost EEG responses, and fit a per-person scaling vector with ordinary least squares.</li>
+            <li><strong className="text-white font-normal">Behavioral validation.</strong> Run prospective studies: child watches a classroom video, AQAL predicts high visual-network divergence, measure pupil dilation, gaze aversion, and caregiver stress rating. Report sensitivity, specificity, and calibration curves.</li>
+            <li><strong className="text-white font-normal">Site harmonization.</strong> Standardize preprocessing choices, document protocol differences, release a clean metadata table to reduce noise before any GPU work.</li>
+            <li><strong className="text-white font-normal">Clinical guardrails.</strong> Define referral language, risk-flag thresholds, and ethics documentation. Specify what &ldquo;increased visual and salience divergence&rdquo; triggers in a pediatric workflow — and what it does not.</li>
+          </ol>
+
+          <SubTitle>7.2 With GPU — Learn the Neurodiverse Brain</SubTitle>
+          <ol className="space-y-2 text-[14px] text-[var(--text)] font-light leading-[1.8] list-decimal list-inside">
+            <li><strong className="text-white font-normal">Conditional encoder fine-tuning.</strong> Replace the statistical patch with GPU-accelerated fine-tuning of the 177M-parameter transformer directly on autistic task fMRI, using low-rank adapters per subgroup. Learn the ND manifold instead of multiplying by a fixed map.</li>
+            <li><strong className="text-white font-normal">Developmental models.</strong> Train separate encoders for infants and toddlers using prospective datasets. Early detection lives in the first 18 months — adult resting-state maps cannot be extrapolated to babies.</li>
+            <li><strong className="text-white font-normal">Inverse pipeline for screening.</strong> Train a brain-to-behavior model: take home video or eye-tracking, predict likelihood of atypical sensory processing using AQAL predictions as a generative prior. A mismatch score across seven networks becomes a risk flag, not a diagnosis.</li>
+            <li><strong className="text-white font-normal">Multi-condition expansion.</strong> Joint training for ADHD, sensory processing disorder, and anxiety, plus EEG fusion for portable monitoring.</li>
+            <li><strong className="text-white font-normal">End-to-end uncertainty.</strong> Use ensembles or Bayesian neural nets so credible intervals come from the model itself, not post-hoc bootstrapping.</li>
+          </ol>
+
+          <SubTitle>7.3 Toward Early Detection</SubTitle>
+          <P>AQAL does not currently detect autism — it predicts brain activity given a stimulus. Early detection requires the inverse problem: observe naturalistic behavior, infer likely neural processing differences, and flag risk for follow-up. This requires three prerequisites:</P>
+          <ol className="space-y-2 text-[14px] text-[var(--text)] font-light leading-[1.8] list-decimal list-inside">
+            <li><strong className="text-white font-normal">Train on infants and toddlers.</strong> The largest effects in AQAL are limbic and DMN, but early autism markers involve visual attention and social orienting in the first 18 months.</li>
+            <li><strong className="text-white font-normal">Flip the pipeline.</strong> Instead of stimulus → brain, build brain → behavior. Compare predicted sensory profiles to real home videos or eye-tracking.</li>
+            <li><strong className="text-white font-normal">Clinical pathway integration.</strong> Any risk flag must trigger a structured referral, not a label. Output example: &ldquo;increased visual and salience divergence relative to age norms, consider M-CHAT follow-up.&rdquo; Models do not replace clinical assessment.</li>
+          </ol>
+
+          <SubTitle>7.4 Toward Clinical Diagnostic Rigidity (SaMD)</SubTitle>
+          <P>To transition from a heuristic tool to a regulated Software as a Medical Device, AQAL would need:</P>
           <ul className="space-y-1.5 text-[14px] text-[var(--text)] font-light leading-[1.8] list-disc list-inside">
-            <li>GPU fine-tuning of the AQAL encoder directly on neurodiverse fMRI data</li>
-            <li>Individual calibration via a 5-minute sensory assessment to personalize predictions</li>
-            <li>Expanded training data from additional consortia to reach 10,000+ subjects</li>
-            <li>Additional neurodivergent conditions (ADHD, sensory processing disorder, anxiety)</li>
-            <li>EEG integration for real-time, portable brain monitoring</li>
-            <li>Clinical validation studies comparing AQAL predictions against observed behavioral responses</li>
+            <li>ISO 13485 Quality Management System with auditable version control</li>
+            <li>Prospective clinical trials comparing predictions against ADOS-2 and ADI-R gold standards</li>
+            <li>Physiological validation against real-time markers (HRV, GSR, cortisol)</li>
+            <li>FDA De Novo classification pathway with strict Intended Use statement</li>
+            <li>Predetermined Change Control Plan (PCCP) for safe algorithm updates</li>
+            <li>Proof of clinical utility: clinician + AQAL outperforms clinician alone</li>
           </ul>
         </Section>
 
         {/* 8. Conclusion */}
         <Section id="conclusion">
           <SectionTitle number="8">Conclusion</SectionTitle>
-          <P>AQAL demonstrates that combining a state-of-the-art multimodal brain encoding model with population-level autism neuroimaging data can produce meaningful neurodiverse brain predictions from arbitrary sensory stimuli. While the current statistical transform is an approximation, it makes neuroscience-informed predictions accessible without requiring individual brain scans or GPU infrastructure. The identification of 820 significant connectivity differences across 871 subjects provides a robust empirical foundation, and the system&apos;s real-time performance enables practical applications in accessibility, education, and clinical communication.</P>
-          <P>By releasing the platform publicly, we aim to make computational neurodiversity research accessible to researchers, educators, clinicians, and families who lack access to neuroimaging facilities.</P>
+          <P>AQAL is a promising accessibility design tool today. It demonstrates that combining a multimodal brain encoding model with population-level autism connectivity data can produce neuroscience-informed predictions from arbitrary stimuli — without individual brain scans or GPU infrastructure.</P>
+          <P>However, the current system is a prototype, not a clinical instrument. The statistical transform is an approximation that discards individual variation, the connectivity map requires FDR correction, and no behavioral validation exists. These are not minor caveats — they are the core problems to solve.</P>
+          <P>The path forward is clear: fix the statistics on CPU first (FDR correction, age stratification, behavioral validation), then invest GPU budget to replace the statistical patch with a learned conditional encoder. Only then can AQAL responsibly explore early detection as a screening aid within standard clinical workflows.</P>
+          <P>By publishing both the platform and an honest account of its limitations, we aim to accelerate computational neurodiversity research while setting realistic expectations about what the system can and cannot do.</P>
         </Section>
 
         {/* References */}
