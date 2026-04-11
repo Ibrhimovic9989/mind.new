@@ -378,7 +378,8 @@ function Timeline() {
       <div className="max-w-[1024px] mx-auto">
         <h2 className="reveal text-[26px] leading-tight tracking-tight mb-10">Roadmap</h2>
         {[
-          { v: "AQAL v0.1", n: "Seed", d: "Foundation model trained. Statistical brain transform. Live API.", c: true },
+          { v: "AQAL v0.1", n: "Seed", d: "Foundation model trained. Statistical brain transform. Live API.", c: false },
+          { v: "AQAL v0.2", n: "Root", d: "FDR-corrected (387 connections). Site harmonization. Age stratification. Bootstrap uncertainty. Deployed.", c: true },
           { v: "AQAL v0.5", n: "Sprout", d: "GPU fine-tuning. Sensory subtypes. Video input. Age-specific models.", c: false },
           { v: "AQAL v1.0", n: "Bloom", d: "Clinically validated. 10K+ subjects. Sensory Passport. Published metrics.", c: false },
           { v: "AQAL v2.0", n: "Canopy", d: "Real-time processing. EEG integration. Wearable support. 100K+ subjects.", c: false },
@@ -424,11 +425,14 @@ function CTA() {
 function Footer() {
   return (
     <footer className="border-t border-[var(--border)] py-5 px-6">
-      <div className="max-w-[1024px] mx-auto flex items-center justify-between text-[11px] text-[var(--muted)]">
-        <span>Mind.new by Leeza Care Research &amp; Development Foundation</span>
-        <div className="flex gap-5">
-          <a href="https://leeza.app" className="hover:text-white transition">About</a>
-          <a href="mailto:ibrahim.raza@leeza.app" className="hover:text-white transition">Contact</a>
+      <div className="max-w-[1024px] mx-auto">
+        <p className="text-[10px] text-[var(--muted)]/50 mb-4 leading-relaxed font-light">AQAL is a research tool for accessibility design and neurodiversity awareness. It is not a diagnostic medical device. Predictions are population-level statistical estimates, not individual clinical assessments. Do not use for diagnosis. If you are concerned about a child, consult a developmental pediatrician.</p>
+        <div className="flex items-center justify-between text-[11px] text-[var(--muted)]">
+          <span>Mind.new by Leeza Care Research &amp; Development Foundation</span>
+          <div className="flex gap-5">
+            <a href="https://leeza.app" className="hover:text-white transition">About</a>
+            <a href="mailto:ibrahim.raza@leeza.app" className="hover:text-white transition">Contact</a>
+          </div>
         </div>
       </div>
     </footer>
