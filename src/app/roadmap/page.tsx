@@ -52,19 +52,20 @@ export default function RoadmapPage() {
           <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-8 font-light max-w-lg">Four structural weaknesses identified by expert review. These are not caveats — they are the core problems to solve.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
-              { severity: "critical", title: "Uncorrected Statistics", desc: "820 connections at p<0.05 uncorrected across 4,950 tests. Hundreds of false positives expected. The connectivity map driving the ND transform is noisy." },
+              { severity: "resolved", title: "Uncorrected Statistics", desc: "Fixed in v0.2: 387 FDR-corrected connections (q<0.05) with site harmonization and age/sex covariates. Down from 1,065 uncorrected. Core limbic/DMN findings survive correction." },
               { severity: "critical", title: "Statistics, Not Learning", desc: "The ND transform is a fixed per-vertex scale+shift from t-tests. It discards covariance structure and cannot capture individual variation. A linear patch, not a learned model." },
               { severity: "high", title: "Resting → Task-Evoked Leap", desc: "Connectivity from resting-state fMRI applied to task-evoked predictions. Assumes resting wiring maps to active processing — the error is unquantified." },
               { severity: "high", title: "Average Neurodiverse Brain", desc: "88.3% of vertices get identical alteration regardless of individual. Autism is a spectrum — a single average risks stereotyping." },
               { severity: "high", title: "No Behavioral Ground Truth", desc: "Zero validation against sensory overload, eye-tracking, pupil dilation, GSR, or caregiver report. A visualization engine, not a validated tool." },
               { severity: "medium", title: "Dataset Limitations", desc: "871 subjects, 86.6% male, 20 heterogeneous sites, mixed ages. No site harmonization in v0.1. May not generalize." },
-              { severity: "medium", title: "No Uncertainty", desc: "Point estimates with no confidence ranges. Users cannot distinguish high-confidence from low-confidence predictions." },
+              { severity: "resolved", title: "No Uncertainty", desc: "Fixed in v0.2: 200-iteration bootstrap produces 95% credible intervals per vertex. Mean CI width 0.027. API returns uncertainty metadata." },
               { severity: "long-term", title: "No Early Detection", desc: "AQAL predicts brain activity from stimuli (forward). Early detection needs the inverse: behavior → neural differences → risk flag." },
             ].map((issue, i) => (
               <div key={issue.title} className={`reveal reveal-delay-${Math.min(i + 1, 3)} card p-5`}>
                 <div className="flex items-center justify-between mb-2">
                   <h3 className="text-[13px] font-medium">{issue.title}</h3>
                   <span className={`text-[9px] px-2 py-0.5 rounded-full font-medium ${
+                    issue.severity === "resolved" ? "bg-green-500/10 text-green-400" :
                     issue.severity === "critical" ? "bg-red-500/10 text-red-400" :
                     issue.severity === "high" ? "bg-yellow-500/10 text-yellow-400" :
                     issue.severity === "medium" ? "bg-[var(--accent)]/10 text-[var(--accent)]" :
@@ -87,13 +88,13 @@ export default function RoadmapPage() {
           <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-8 font-light max-w-lg">Most cleanup is data work and statistics, not deep learning. These address the three biggest flaws: uncorrected p-values, group-average predictions, and missing behavioral ground truth.</p>
 
           {[
-            { priority: "P1", title: "FDR-Corrected Connectivity Map", status: "script-ready", desc: "Re-run 4,950 tests with Benjamini-Hochberg correction, site as random effect, age and sex as covariates. Publish corrected and uncorrected maps side by side.", detail: "v4 training script written and ready. Needs execution on Azure VM (~30min CPU)." },
-            { priority: "P2", title: "Age Stratification", status: "script-ready", desc: "Split 871 subjects into developmental bands (child 0-12, adolescent 12-18, adult 18+). Compute separate transforms per band. No retraining.", detail: "Built into v4 script. Separate vertex_scale/shift per age band." },
-            { priority: "P3", title: "Uncertainty Quantification", status: "script-ready", desc: "Bootstrap the transform (200 iterations) to produce 95% credible intervals for each vertex. Propagate to the seven network scores.", detail: "Built into v4 script. API and UI integration not started." },
-            { priority: "P4", title: "Site Harmonization", status: "script-ready", desc: "Residualize site effects from connectivity features. Document preprocessing differences per site. Release clean metadata table.", detail: "Residualization built into v4. Documentation not started." },
+            { priority: "P1", title: "FDR-Corrected Connectivity Map", status: "done", desc: "Ran 4,950 tests with Benjamini-Hochberg FDR correction, site harmonization, age and sex as covariates. Result: 387 FDR-corrected connections (q<0.05), 1,065 uncorrected, 48 Bonferroni.", detail: "v4 transform trained on Azure VM, uploaded to HuggingFace, APIs auto-load v4, paper updated with real numbers." },
+            { priority: "P2", title: "Age Stratification", status: "done", desc: "Split 871 subjects into child (0-12), adolescent (12-18), adult (18+). Adolescents: 73 FDR connections (strongest signal). Children: 0 (insufficient power with 106+116 subjects). Adults: 1.", detail: "Age-band selector added to /api/compare endpoint and NeuroBrain frontend. Per-band transforms stored in v4.pt." },
+            { priority: "P3", title: "Uncertainty Quantification", status: "done", desc: "200 bootstrap iterations producing 95% credible intervals for each of 20,484 vertices. Mean CI width: 0.027, max: 0.108. Propagated to API responses.", detail: "CI bounds stored in v4 transform. API returns uncertainty metadata (mean CI width, high-confidence vertex %)." },
+            { priority: "P4", title: "Site Harmonization", status: "done", desc: "Site effects residualized from all 4,950 connectivity features across 20 sites via linear regression before statistical testing.", detail: "Implemented in v4 training pipeline. Per-site documentation not yet started." },
             { priority: "P5", title: "5-Minute Individual Calibration", status: "not-started", desc: "Design standardized stimulus set, collect brief behavioral response, fit per-person scaling vector with ordinary least squares (CPU linear solve).", detail: "Turns population average into a personal prior. No code written yet." },
             { priority: "P6", title: "Behavioral Validation Study", status: "not-started", desc: "AQAL predicts high visual-network divergence → measure pupil dilation, gaze aversion, caregiver stress rating. Report sensitivity, specificity, calibration curves.", detail: "Prospective study design needed. Requires IRB approval and clinical partner." },
-            { priority: "P7", title: "Clinical Guardrails", status: "not-started", desc: "Define referral language, risk-flag thresholds. Specify what 'increased divergence' triggers in a pediatric workflow — and what it does not.", detail: "Ethics documentation and disclaimer text for all API responses." },
+            { priority: "P7", title: "Clinical Guardrails", status: "in-progress", desc: "Define referral language, risk-flag thresholds. Specify what 'increased divergence' triggers in a pediatric workflow — and what it does not.", detail: "Clinical disclaimer added to all API compare responses. Full ethics documentation not yet started." },
           ].map((item, i) => (
             <div key={item.priority} className={`reveal reveal-delay-${Math.min(i + 1, 3)} flex gap-4 mb-4`}>
               <div className="flex flex-col items-center flex-shrink-0">
@@ -213,30 +214,33 @@ export default function RoadmapPage() {
           <div className="reveal space-y-6">
             <ProgressGroup title="Done" color="green" items={[
               "Foundation model deployed (CPU, 20-30s inference)",
-              "871-subject connectivity analysis (v3, uncorrected)",
+              "871-subject connectivity analysis with FDR correction (v4)",
+              "387 FDR-corrected connections identified (q<0.05), site-harmonized",
+              "Age-stratified transforms: child / adolescent / adult",
+              "200-iteration bootstrap uncertainty (95% CI per vertex)",
+              "v4 transform uploaded to HuggingFace, APIs auto-load",
+              "Age-band selector in NeuroBrain API and frontend",
+              "Uncertainty and CI metadata exposed in API responses",
+              "Clinical disclaimer added to all compare responses",
               "Live API: predict, compare, connectivity, interpret",
               "Sensory Audit app with video and text input",
               "7-network sensory profiling system",
               "Brain demo with per-timestep interpretation",
-              "Technical paper with honest limitations (6 subsections)",
-              "Paper roadmap with CPU vs GPU split",
-              "V4 training script written (FDR, harmonization, CI, age bands)",
+              "Technical paper updated with real FDR numbers and honest limitations",
+              "Public roadmap page with CPU vs GPU tracks",
               "NDA, SPARK, UK Biobank applications submitted",
               "Three apps deployed: mind.new, neuro.mind.new, sensory.mind.new",
             ]} />
 
             <ProgressGroup title="In Progress" color="yellow" items={[
-              "Running v4 training script — needs execution on Azure VM",
+              "Clinical guardrails — disclaimer added, full ethics documentation pending",
+              "Per-site preprocessing documentation",
             ]} />
 
             <ProgressGroup title="Not Started (CPU)" color="purple" items={[
-              "Upload v4 transform to HuggingFace",
-              "Update APIs to load v4 instead of v3",
-              "Expose uncertainty/CI in API responses and UIs",
-              "Age-band selector in APIs and frontends",
               "5-minute individual calibration module",
               "Behavioral validation study protocol",
-              "Clinical guardrail documentation",
+              "Network-level CI propagation in frontend charts",
             ]} />
 
             <ProgressGroup title="Blocked on GPU" color="red" items={[
