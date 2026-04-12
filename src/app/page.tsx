@@ -141,7 +141,7 @@ function Hero() {
             <a href="#contact" className="text-[13px] px-5 py-2 rounded-full border border-white/10 text-[var(--text)] hover:border-white/20 transition">Request API Access</a>
           </div>
           <div className="grid grid-cols-3 gap-4 sm:flex sm:gap-8 mt-10 pt-5 border-t border-[var(--border)]">
-            {[["933", "brain scans"], ["20,484", "vertices"], ["820", "connections"]].map(([n, l]) => (
+            {[["1,545", "brain scans"], ["20,484", "vertices"], ["1,002", "connections"]].map(([n, l]) => (
               <div key={l}><div className="text-[16px] sm:text-[18px] font-medium text-white tabular-nums">{n}</div><div className="text-[10px] text-[var(--muted)] mt-0.5">{l}</div></div>
             ))}
           </div>
@@ -271,7 +271,7 @@ function Scale() {
   const ref = useRef<HTMLDivElement>(null);
   const [vis, setVis] = useState(false);
   useEffect(() => { const o = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVis(true); }, { threshold: 0.3 }); if (ref.current) o.observe(ref.current); return () => o.disconnect(); }, []);
-  const bars = [{ n: "50", h: 12 }, { n: "100", h: 20 }, { n: "200", h: 30 }, { n: "400", h: 40 }, { n: "933", h: 52, c: true }, { n: "10K", h: 65, f: true }, { n: "100K", h: 80, f: true }, { n: "400K", h: 95, f: true }];
+  const bars = [{ n: "50", h: 10 }, { n: "100", h: 15 }, { n: "200", h: 22 }, { n: "400", h: 32 }, { n: "871", h: 42 }, { n: "1,545", h: 55, c: true }, { n: "10K", h: 70, f: true }, { n: "100K", h: 85, f: true }, { n: "400K", h: 95, f: true }];
   return (
     <S>
       <div className="max-w-[1024px] mx-auto">
@@ -360,7 +360,7 @@ function Numbers() {
   return (
     <section ref={ref} className="py-24 px-6">
       <div className="max-w-[1024px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8">
-        {[["933", "Brain recordings"], ["820", "Neural connections"], ["20,484", "Cortical points"], ["6", "Networks profiled"]].map(([n, l], i) => (
+        {[["1,545", "Brain recordings"], ["1,002", "Neural connections"], ["20,484", "Cortical points"], ["7", "Networks profiled"]].map(([n, l], i) => (
           <div key={l} style={{ transition: `all 0.6s cubic-bezier(0.16,1,0.3,1) ${i * 0.1}s`, opacity: vis ? 1 : 0, transform: vis ? "translateY(0)" : "translateY(16px)" }}>
             <div className="text-[28px] font-medium text-white tabular-nums tracking-tight">{n}</div>
             <div className="text-[11px] text-[var(--muted)] mt-0.5 font-light">{l}</div>
@@ -379,7 +379,8 @@ function Timeline() {
         <h2 className="reveal text-[26px] leading-tight tracking-tight mb-10">Roadmap</h2>
         {[
           { v: "AQAL v0.1", n: "Seed", d: "Foundation model trained. Statistical brain transform. Live API.", c: false },
-          { v: "AQAL v0.2", n: "Root", d: "FDR-corrected (387 connections). Site harmonization. Age stratification. Bootstrap uncertainty. Deployed.", c: true },
+          { v: "AQAL v0.2", n: "Root", d: "FDR-corrected. Site harmonization. Age stratification. Bootstrap uncertainty. Single consortium (871 subjects).", c: false },
+          { v: "AQAL v0.3", n: "Trunk", d: "Dual-consortium (1,545 subjects, 36 sites). 1,002 FDR connections. ABIDE I+II combined. Deployed.", c: true },
           { v: "AQAL v0.5", n: "Sprout", d: "GPU fine-tuning. Sensory subtypes. Video input. Age-specific models.", c: false },
           { v: "AQAL v1.0", n: "Bloom", d: "Clinically validated. 10K+ subjects. Sensory Passport. Published metrics.", c: false },
           { v: "AQAL v2.0", n: "Canopy", d: "Real-time processing. EEG integration. Wearable support. 100K+ subjects.", c: false },

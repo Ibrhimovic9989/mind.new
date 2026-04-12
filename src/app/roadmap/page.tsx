@@ -52,12 +52,12 @@ export default function RoadmapPage() {
           <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-8 font-light max-w-lg">Four structural weaknesses identified by expert review. These are not caveats — they are the core problems to solve.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
-              { severity: "resolved", title: "Uncorrected Statistics", desc: "Fixed in v0.2: 387 FDR-corrected connections (q<0.05) with site harmonization and age/sex covariates. Down from 1,065 uncorrected. Core limbic/DMN findings survive correction." },
+              { severity: "resolved", title: "Uncorrected Statistics", desc: "Fixed in v0.3: 1,002 FDR-corrected connections (q<0.05) from 1,545 subjects across 36 sites. 2.6x improvement over single-consortium baseline. Site harmonization and age/sex covariates applied." },
               { severity: "critical", title: "Statistics, Not Learning", desc: "The ND transform is a fixed per-vertex scale+shift from t-tests. It discards covariance structure and cannot capture individual variation. A linear patch, not a learned model." },
               { severity: "high", title: "Resting → Task-Evoked Leap", desc: "Connectivity from resting-state fMRI applied to task-evoked predictions. Assumes resting wiring maps to active processing — the error is unquantified." },
               { severity: "high", title: "Average Neurodiverse Brain", desc: "88.3% of vertices get identical alteration regardless of individual. Autism is a spectrum — a single average risks stereotyping." },
               { severity: "high", title: "No Behavioral Ground Truth", desc: "Zero validation against sensory overload, eye-tracking, pupil dilation, GSR, or caregiver report. A visualization engine, not a validated tool." },
-              { severity: "medium", title: "Dataset Limitations", desc: "871 subjects, 86.6% male, 20 heterogeneous sites, mixed ages. No site harmonization in v0.1. May not generalize." },
+              { severity: "resolved", title: "Dataset Limitations", desc: "Expanded from 871 to 1,545 subjects across 36 sites (two consortia). Site harmonization applied. Age/sex covariates included. Male skew persists but dataset is now 2x larger." },
               { severity: "resolved", title: "No Uncertainty", desc: "Fixed in v0.2: 200-iteration bootstrap produces 95% credible intervals per vertex. Mean CI width 0.027. API returns uncertainty metadata." },
               { severity: "long-term", title: "No Early Detection", desc: "AQAL predicts brain activity from stimuli (forward). Early detection needs the inverse: behavior → neural differences → risk flag." },
             ].map((issue, i) => (
@@ -88,8 +88,8 @@ export default function RoadmapPage() {
           <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-8 font-light max-w-lg">Most cleanup is data work and statistics, not deep learning. These address the three biggest flaws: uncorrected p-values, group-average predictions, and missing behavioral ground truth.</p>
 
           {[
-            { priority: "P1", title: "FDR-Corrected Connectivity Map", status: "done", desc: "Ran 4,950 tests with Benjamini-Hochberg FDR correction, site harmonization, age and sex as covariates. Result: 387 FDR-corrected connections (q<0.05), 1,065 uncorrected, 48 Bonferroni.", detail: "v4 transform trained on Azure VM, uploaded to HuggingFace, APIs auto-load v4, paper updated with real numbers." },
-            { priority: "P2", title: "Age Stratification", status: "done", desc: "Split 871 subjects into child (0-12), adolescent (12-18), adult (18+). Adolescents: 73 FDR connections (strongest signal). Children: 0 (insufficient power with 106+116 subjects). Adults: 1.", detail: "Age-band selector added to /api/compare endpoint and NeuroBrain frontend. Per-band transforms stored in v4.pt." },
+            { priority: "P1", title: "FDR-Corrected Connectivity Map", status: "done", desc: "1,545 subjects across 36 sites (ABIDE I+II). 1,002 FDR-corrected connections (q<0.05), 1,773 uncorrected, 73 Bonferroni. 2.6x improvement over single-consortium v4.", detail: "v5 transform trained, uploaded to HuggingFace, APIs auto-load v5, paper updated." },
+            { priority: "P2", title: "Age Stratification", status: "done", desc: "Adolescents (12-18): 49 FDR from 262 ASD + 280 TD. Children (<12): 1 FDR from 221 ASD + 327 TD (548 total, confirms statistical transform insufficient). Adults: 0 FDR.", detail: "Age-band selector in API and frontend. Child-specific analysis published as negative finding." },
             { priority: "P3", title: "Uncertainty Quantification", status: "done", desc: "200 bootstrap iterations producing 95% credible intervals for each of 20,484 vertices. Mean CI width: 0.027, max: 0.108. Propagated to API responses.", detail: "CI bounds stored in v4 transform. API returns uncertainty metadata (mean CI width, high-confidence vertex %)." },
             { priority: "P4", title: "Site Harmonization", status: "done", desc: "Site effects residualized from all 4,950 connectivity features across 20 sites via linear regression before statistical testing.", detail: "Implemented in v4 training pipeline. Per-site documentation not yet started." },
             { priority: "P5", title: "5-Minute Individual Calibration", status: "not-started", desc: "Design standardized stimulus set, collect brief behavioral response, fit per-person scaling vector with ordinary least squares (CPU linear solve).", detail: "Turns population average into a personal prior. No code written yet." },
@@ -214,8 +214,8 @@ export default function RoadmapPage() {
           <div className="reveal space-y-6">
             <ProgressGroup title="Done" color="green" items={[
               "Foundation model deployed (CPU, 20-30s inference)",
-              "871-subject connectivity analysis with FDR correction (v4)",
-              "387 FDR-corrected connections identified (q<0.05), site-harmonized",
+              "1,545-subject dual-consortium connectivity analysis (v5, ABIDE I+II)",
+              "1,002 FDR-corrected connections (q<0.05), 2.6x improvement over v4",
               "Age-stratified transforms: child / adolescent / adult",
               "200-iteration bootstrap uncertainty (95% CI per vertex)",
               "v4 transform uploaded to HuggingFace, APIs auto-load",
