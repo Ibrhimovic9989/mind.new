@@ -274,9 +274,26 @@ function ConnectivityMaps() {
     <S>
       <div className="max-w-[1024px] mx-auto">
         <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Connectivity Maps</h2>
-        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-10 max-w-lg font-light">
+        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-8 max-w-lg font-light">
           Heatmaps showing where brain wiring differs between autistic and neurotypical individuals. Generated from 1,545 real fMRI brain scans across 36 clinical sites.
         </p>
+
+        {/* Terminology */}
+        <div className="reveal reveal-delay-2 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mb-10">
+          {[
+            { term: "Brain Region", def: "One of 100 parcels the brain is divided into. Each handles a specific function — vision, movement, language, emotion, etc." },
+            { term: "Connection", def: "A pair of brain regions that communicate with each other. With 100 regions, there are 4,950 possible pairs to test." },
+            { term: "Connectivity", def: "How strongly two regions are linked. Measured by how closely their activity patterns correlate over time in an fMRI scan." },
+            { term: "t-statistic", def: "A number measuring how different ASD and TD groups are for a given connection. Larger = bigger difference. Can be positive (ASD stronger) or negative (TD stronger)." },
+            { term: "FDR Correction", def: "A noise filter. When you test 4,950 connections, ~248 will look significant by pure chance. FDR ensures at most 5% of your findings are false alarms." },
+            { term: "Network", def: "A group of brain regions that work together. The 7 major networks: Visual, Somatomotor, Dorsal Attention, Salience, Limbic, Control, and Default Mode." },
+          ].map((item, i) => (
+            <div key={item.term} className={`reveal reveal-delay-${Math.min(i + 1, 3)} card p-4`}>
+              <h3 className="text-[13px] font-medium mb-1.5 text-[var(--accent)]">{item.term}</h3>
+              <p className="text-[11px] text-[var(--muted)] leading-relaxed font-light">{item.def}</p>
+            </div>
+          ))}
+        </div>
 
         {/* FDR heatmap */}
         <div className="reveal reveal-delay-2 card p-4 mb-4">
@@ -289,6 +306,16 @@ function ConnectivityMaps() {
           </div>
           <img src="/brain/connectivity_heatmap.png" alt="FDR-corrected connectivity heatmap" className="w-full rounded-lg" />
           <p className="text-[11px] text-[var(--muted)] mt-3 font-light">Each bright pixel represents a statistically reliable wiring difference between ASD and TD brains. Red = stronger in ASD, blue = stronger in TD. Only connections surviving FDR correction are shown.</p>
+          <div className="mt-4 p-3 bg-[var(--bg)] rounded-lg border border-[var(--border)]">
+            <p className="text-[10px] text-[var(--accent)] font-medium mb-2">How to read this map</p>
+            <div className="space-y-1.5 text-[11px] text-[var(--muted)] font-light leading-relaxed">
+              <p>Each <strong className="text-white font-normal">row and column</strong> is one of 100 brain regions, grouped by network (labels on axes).</p>
+              <p>A <strong className="text-white font-normal">bright red pixel</strong> at row X, column Y means that connection is significantly <em>stronger</em> in autistic brains.</p>
+              <p>A <strong className="text-white font-normal">bright blue pixel</strong> means it&apos;s significantly stronger in neurotypical brains.</p>
+              <p>A <strong className="text-white font-normal">dark/black pixel</strong> means no reliable difference was found for that connection.</p>
+              <p>The <strong className="text-white font-normal">purple grid lines</strong> separate the 7 brain networks so you can see which networks are most affected.</p>
+            </div>
+          </div>
         </div>
 
         {/* Network bar chart */}
@@ -299,6 +326,28 @@ function ConnectivityMaps() {
           </div>
           <img src="/brain/network_bars.png" alt="Network-level connectivity differences" className="w-full rounded-lg" />
           <p className="text-[11px] text-[var(--muted)] mt-3 font-light">Default Mode Network shows the most affected connections (511), followed by Somatomotor (367) and Dorsal Attention (300). This aligns with known autism neuroscience — DMN alterations affect self-referential processing and social cognition.</p>
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {[
+              { net: "Default Mode", n: 511, color: "#22c55e", what: "Self-reflection, mind-wandering, social thinking. Most affected — autistic brains show altered internal processing." },
+              { net: "Somatomotor", n: 367, color: "#ec4899", what: "Movement and body awareness. Differences here relate to motor planning, stimming, and physical coordination." },
+              { net: "Dorsal Attention", n: 300, color: "#f59e0b", what: "Focus and concentration. Altered wiring can explain hyperfocus on interests or difficulty shifting attention." },
+              { net: "Visual", n: 265, color: "#ef4444", what: "Processing what you see. Autistic brains often notice more detail but can be overwhelmed by busy scenes." },
+              { net: "Salience", n: 252, color: "#7c6aff", what: "Filtering what matters vs background. Altered salience = difficulty ignoring the AC hum when someone is talking." },
+              { net: "Control", n: 155, color: "#06b6d4", what: "Planning and decision-making. Relates to preference for routine and difficulty with unexpected changes." },
+              { net: "Limbic", n: 154, color: "#ff6b6b", what: "Emotion and reward. Differences here affect emotional regulation — feeling things more intensely or differently." },
+            ].map((item) => (
+              <div key={item.net} className="flex gap-2 p-2 bg-[var(--bg)] rounded-lg">
+                <div className="w-1 rounded-full flex-shrink-0" style={{ background: item.color }} />
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[11px] font-medium text-white">{item.net}</span>
+                    <span className="text-[9px] tabular-nums" style={{ color: item.color }}>{item.n}</span>
+                  </div>
+                  <p className="text-[10px] text-[var(--muted)] font-light leading-relaxed">{item.what}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* All connections */}
