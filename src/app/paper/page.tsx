@@ -30,7 +30,7 @@ export default function PaperPage() {
           <SectionTitle>Abstract</SectionTitle>
           <div className="paper-card p-6">
             <p className="text-[14px] leading-[1.85] text-[var(--text)] font-light">
-              We present AQAL, a computational system that predicts how neurodiverse (autistic) brains process sensory stimuli by combining a proprietary multimodal brain encoding model (177M parameters) with a statistical neurodiverse transform derived from 871 resting-state fMRI scans from a large-scale multi-site autism neuroimaging consortium. AQAL maps text, audio, and video inputs onto 20,484 cortical surface vertices and generates both neurotypical and neurodiverse brain activation predictions in real time. Our connectivity analysis identifies 387 FDR-corrected significant connections (q &lt; 0.05) between ASD and typically-developing groups across 4,950 tested pairs, with site harmonization and age/sex covariates applied across 100 cortical parcels, with the limbic temporal pole, default mode network, and visual cortex showing the largest effect sizes. We further introduce a sensory profiling module that quantifies divergence across seven canonical brain networks, enabling practical applications in accessibility auditing and personalized accommodation design.
+              We present AQAL, a computational system that predicts how neurodiverse (autistic) brains process sensory stimuli by combining a proprietary multimodal brain encoding model (177M parameters) with a statistical neurodiverse transform derived from 1,545 resting-state fMRI scans across two large-scale multi-site autism neuroimaging consortia. AQAL maps text, audio, and video inputs onto 20,484 cortical surface vertices and generates both neurotypical and neurodiverse brain activation predictions in real time. Our connectivity analysis identifies 1,002 FDR-corrected significant connections (q &lt; 0.05) between ASD and typically-developing groups across 4,950 tested pairs, with site harmonization and age/sex covariates applied across 100 cortical parcels and 36 clinical sites, with the limbic temporal pole, default mode network, and visual cortex showing the largest effect sizes. We further introduce a sensory profiling module that quantifies divergence across seven canonical brain networks, enabling practical applications in accessibility auditing and personalized accommodation design.
             </p>
             <div className="flex flex-wrap gap-2 mt-5">
               {["neurodiversity", "autism", "brain encoding", "fMRI", "foundation model", "sensory processing", "cortical mapping"].map(kw => (
@@ -73,7 +73,7 @@ export default function PaperPage() {
           <SubTitle>1.1 Contributions</SubTitle>
           <ol className="space-y-2 text-[14px] text-[var(--text)] font-light leading-[1.8] list-decimal list-inside">
             <li><strong className="text-white font-normal">A CPU-based statistical transform</strong> that converts neurotypical predictions to neurodiverse predictions using connectivity effect sizes from 871 subjects across 20 clinical sites.</li>
-            <li><strong className="text-white font-normal">A connectivity analysis pipeline</strong> identifying 387 FDR-corrected significant connections (1,065 uncorrected) between ASD and TD groups across 4,950 tested pairs, with site harmonization and age/sex covariates.</li>
+            <li><strong className="text-white font-normal">A connectivity analysis pipeline</strong> identifying 1,002 FDR-corrected significant connections (1,773 uncorrected) between ASD and TD groups across 4,950 tested pairs from 1,545 subjects at 36 sites, with site harmonization and age/sex covariates.</li>
             <li><strong className="text-white font-normal">A sensory profiling system</strong> that maps brain-level divergence onto seven functional networks (visual, auditory, motor, language, social, default mode, salience).</li>
             <li><strong className="text-white font-normal">A publicly accessible platform</strong> (API + web interface) enabling real-time neurodiverse brain prediction from text, audio, or video input.</li>
           </ol>
@@ -202,17 +202,20 @@ export default function PaperPage() {
           <SectionTitle number="4">Results</SectionTitle>
 
           <SubTitle>4.1 Connectivity Analysis</SubTitle>
-          <P>Analysis of 871 ABIDE I subjects across 20 clinical sites, with site harmonization and age/sex covariates, revealed 387 FDR-corrected significant connections out of 4,950 tested (7.8%, q &lt; 0.05). The limbic system showed the largest effect sizes, consistent with known emotional regulation differences. Default mode network showed bilateral temporal alterations. Age-stratified analysis showed the strongest signal in adolescents (12-18): 73 FDR connections from 174 ASD + 209 TD subjects.</P>
+          <P>Analysis of 1,545 subjects from two consortia (36 clinical sites), with site harmonization and age/sex covariates, revealed 1,002 FDR-corrected significant connections out of 4,950 tested (20.2%, q &lt; 0.05). This represents a 2.6x improvement over the single-consortium baseline (387 FDR from 871 subjects). The limbic system showed the largest effect sizes, consistent with known emotional regulation differences. Default mode network showed bilateral temporal alterations. 73 connections survived Bonferroni correction.</P>
 
           <SubTitle>4.2 Child-Specific Analysis (ABIDE I + II Combined)</SubTitle>
           <P>To test whether connectivity differences exist in younger children, we combined ABIDE I and II to produce a dedicated child cohort: 548 subjects under age 12 (221 ASD, 327 TD) across 24 sites. Despite 2.5x more subjects than the ABIDE I-only child subset, zero connections survived FDR correction (331 uncorrected at p &lt; 0.05, 0 FDR, 0 Bonferroni).</P>
           <Table
             headers={["Dataset", "N", "ASD", "TD", "Uncorrected", "FDR"]}
             rows={[
-              ["All-ages (ABIDE I)", "871", "403", "468", "1,065 (21.5%)", "387 (7.8%)"],
-              ["Adolescents 12-18", "383", "174", "209", "\u2014", "73"],
-              ["Children <12 (ABIDE I only)", "222", "106", "116", "377 (7.6%)", "0"],
-              ["Children <12 (ABIDE I+II)", "548", "221", "327", "331 (6.7%)", "0"],
+              ["All-ages (ABIDE I+II)", "1,545", "693", "852", "1,773 (35.8%)", "1,002 (20.2%)"],
+              ["All-ages (ABIDE I only)", "871", "403", "468", "1,065 (21.5%)", "387 (7.8%)"],
+              ["Adolescents 12-18 (I+II)", "542", "262", "280", "\u2014", "49"],
+              ["Adolescents 12-18 (I only)", "383", "174", "209", "\u2014", "73"],
+              ["Adults 18+ (I+II)", "455", "210", "245", "\u2014", "0"],
+              ["Children <12 (I+II)", "548", "221", "327", "331 (6.7%)", "1"],
+              ["Children <12 (I only)", "222", "106", "116", "377 (7.6%)", "0"],
             ]}
           />
           <P>This is a significant negative finding. Resting-state functional connectivity differences between ASD and TD children under 12 are too subtle for group-level statistical detection, even with 548 subjects and FDR correction. The uncorrected count actually decreased from 377 to 331 when adding ABIDE II, suggesting some of the ABIDE I-only signal was noise. This confirms that the all-ages transform (387 FDR connections) is driven primarily by adolescent and adult data, and that early childhood detection will require either task-evoked fMRI, direct model fine-tuning, or non-fMRI modalities such as EEG or behavioral video analysis.</P>
@@ -276,7 +279,7 @@ export default function PaperPage() {
           <P>Autism is inherently heterogeneous. AQAL produces a single, generalized neurodiverse prediction by shifting a neurotypical baseline — this risks stereotyping neurodivergent processing. The same transform is applied to 88.3% of cortical vertices regardless of the individual. A 5-minute individual calibration module is planned but not yet validated.</P>
 
           <SubTitle>6.4 Statistical Rigor</SubTitle>
-          <P>The v0.1 release reported 820 uncorrected connections (p &lt; 0.05). After implementing FDR correction, site harmonization, and age/sex covariates in v0.2, this drops to 387 FDR-corrected connections (q &lt; 0.05) — 1,065 uncorrected, 48 Bonferroni. The surviving 387 are reliable; the core findings in limbic and default mode networks persist. We publish both corrected and uncorrected maps for transparency. Bootstrap confidence intervals (200 iterations) yield a mean 95% CI width of 0.027 across 20,484 vertices.</P>
+          <P>The v0.1 release reported 820 uncorrected connections. After implementing FDR correction, site harmonization, age/sex covariates, and expanding to two consortia (1,545 subjects across 36 sites) in v0.3, we identify 1,002 FDR-corrected connections (q &lt; 0.05) — 1,773 uncorrected, 73 Bonferroni. This is a 2.6x improvement over the single-consortium baseline. The core findings in limbic and default mode networks persist and strengthen. Bootstrap confidence intervals (200 iterations) yield a mean 95% CI width of 0.059 across 20,484 vertices. We publish both corrected and uncorrected maps for transparency.</P>
 
           <SubTitle>6.5 No Behavioral Ground Truth</SubTitle>
           <P>There is no validation that predicted ND divergence correlates with actual sensory overload, eye-tracking data, or caregiver report. Without behavioral validation, AQAL is a visualization engine, not a clinical tool. Prospective studies comparing predictions against physiological markers (pupil dilation, galvanic skin response, heart rate variability) are a prerequisite for any clinical claims.</P>
