@@ -33,6 +33,8 @@ export default function Home() {
       <Dv />
       <Architecture />
       <Dv />
+      <ConnectivityMaps />
+      <Dv />
       <Scale />
       <Dv />
       <Networks />
@@ -260,6 +262,56 @@ function Architecture() {
               <p className="text-[12px] text-[var(--muted)] leading-relaxed font-light">{d}</p>
             </div>
           ))}
+        </div>
+      </div>
+    </S>
+  );
+}
+
+/* ─── CONNECTIVITY MAPS ─── */
+function ConnectivityMaps() {
+  return (
+    <S>
+      <div className="max-w-[1024px] mx-auto">
+        <h2 className="reveal text-[26px] leading-tight tracking-tight mb-3">Connectivity Maps</h2>
+        <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-10 max-w-lg font-light">
+          Heatmaps showing where brain wiring differs between autistic and neurotypical individuals. Generated from 1,545 real fMRI brain scans across 36 clinical sites.
+        </p>
+
+        {/* FDR heatmap */}
+        <div className="reveal reveal-delay-2 card p-4 mb-4">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <div className="text-[10px] text-[var(--accent)] font-medium tracking-widest uppercase">FDR-Corrected</div>
+              <h3 className="text-[14px] font-medium">1,002 Significant Connections</h3>
+            </div>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--accent)]/10 text-[var(--accent)]">q &lt; 0.05</span>
+          </div>
+          <img src="/brain/connectivity_heatmap.png" alt="FDR-corrected connectivity heatmap" className="w-full rounded-lg" />
+          <p className="text-[11px] text-[var(--muted)] mt-3 font-light">Each bright pixel represents a statistically reliable wiring difference between ASD and TD brains. Red = stronger in ASD, blue = stronger in TD. Only connections surviving FDR correction are shown.</p>
+        </div>
+
+        {/* Network bar chart */}
+        <div className="reveal reveal-delay-3 card p-4 mb-4">
+          <div className="mb-3">
+            <div className="text-[10px] text-[var(--accent2)] font-medium tracking-widest uppercase">Network Breakdown</div>
+            <h3 className="text-[14px] font-medium">Most Affected Brain Networks</h3>
+          </div>
+          <img src="/brain/network_bars.png" alt="Network-level connectivity differences" className="w-full rounded-lg" />
+          <p className="text-[11px] text-[var(--muted)] mt-3 font-light">Default Mode Network shows the most affected connections (511), followed by Somatomotor (367) and Dorsal Attention (300). This aligns with known autism neuroscience — DMN alterations affect self-referential processing and social cognition.</p>
+        </div>
+
+        {/* All connections */}
+        <div className="reveal card p-4">
+          <div className="flex items-center justify-between mb-3">
+            <div>
+              <div className="text-[10px] text-[var(--muted)] font-medium tracking-widest uppercase">Uncorrected (all 4,950)</div>
+              <h3 className="text-[14px] font-medium">Full Connectivity Landscape</h3>
+            </div>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/5 text-[var(--muted)]">reference</span>
+          </div>
+          <img src="/brain/connectivity_all.png" alt="All connectivity differences" className="w-full rounded-lg" />
+          <p className="text-[11px] text-[var(--muted)] mt-3 font-light">All 4,950 connections before FDR filtering. Many of these are noise — the FDR map above shows only the reliable 1,002.</p>
         </div>
       </div>
     </S>
