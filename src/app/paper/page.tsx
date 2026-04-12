@@ -202,9 +202,22 @@ export default function PaperPage() {
           <SectionTitle number="4">Results</SectionTitle>
 
           <SubTitle>4.1 Connectivity Analysis</SubTitle>
-          <P>Analysis of 871 subjects across 20 clinical sites, with site harmonization and age/sex covariates, revealed 387 FDR-corrected significant connections out of 4,950 tested (7.8%, q &lt; 0.05). The limbic system showed the largest effect sizes, consistent with known emotional regulation differences. Default mode network showed bilateral temporal alterations. Age-stratified analysis showed the strongest signal in adolescents (12-18): 73 FDR connections from 174 ASD + 209 TD subjects. Children (0-12) yielded 0 FDR connections — insufficient power with 106 ASD + 116 TD subjects.</P>
+          <P>Analysis of 871 ABIDE I subjects across 20 clinical sites, with site harmonization and age/sex covariates, revealed 387 FDR-corrected significant connections out of 4,950 tested (7.8%, q &lt; 0.05). The limbic system showed the largest effect sizes, consistent with known emotional regulation differences. Default mode network showed bilateral temporal alterations. Age-stratified analysis showed the strongest signal in adolescents (12-18): 73 FDR connections from 174 ASD + 209 TD subjects.</P>
 
-          <SubTitle>4.2 Network-Level Differences</SubTitle>
+          <SubTitle>4.2 Child-Specific Analysis (ABIDE I + II Combined)</SubTitle>
+          <P>To test whether connectivity differences exist in younger children, we combined ABIDE I and II to produce a dedicated child cohort: 548 subjects under age 12 (221 ASD, 327 TD) across 24 sites. Despite 2.5x more subjects than the ABIDE I-only child subset, zero connections survived FDR correction (331 uncorrected at p &lt; 0.05, 0 FDR, 0 Bonferroni).</P>
+          <Table
+            headers={["Dataset", "N", "ASD", "TD", "Uncorrected", "FDR"]}
+            rows={[
+              ["All-ages (ABIDE I)", "871", "403", "468", "1,065 (21.5%)", "387 (7.8%)"],
+              ["Adolescents 12-18", "383", "174", "209", "\u2014", "73"],
+              ["Children <12 (ABIDE I only)", "222", "106", "116", "377 (7.6%)", "0"],
+              ["Children <12 (ABIDE I+II)", "548", "221", "327", "331 (6.7%)", "0"],
+            ]}
+          />
+          <P>This is a significant negative finding. Resting-state functional connectivity differences between ASD and TD children under 12 are too subtle for group-level statistical detection, even with 548 subjects and FDR correction. The uncorrected count actually decreased from 377 to 331 when adding ABIDE II, suggesting some of the ABIDE I-only signal was noise. This confirms that the all-ages transform (387 FDR connections) is driven primarily by adolescent and adult data, and that early childhood detection will require either task-evoked fMRI, direct model fine-tuning, or non-fMRI modalities such as EEG or behavioral video analysis.</P>
+
+          <SubTitle>4.3 Network-Level Differences</SubTitle>
           <Table
             headers={["Network", "Difference", "Direction"]}
             rows={[
@@ -218,10 +231,10 @@ export default function PaperPage() {
             ]}
           />
 
-          <SubTitle>4.3 Transform Coverage</SubTitle>
+          <SubTitle>4.4 Transform Coverage</SubTitle>
           <P>The neurodiverse transform affects 18,067 of 20,484 cortical vertices (88.3%), with scale factors ranging from 0.85 to 1.15 and shift factors from \u22120.05 to 0.01. The transform is denser in temporal and limbic regions and sparser in primary motor cortex, matching the known neuroanatomy of autism.</P>
 
-          <SubTitle>4.4 Real-Time Performance</SubTitle>
+          <SubTitle>4.5 Real-Time Performance</SubTitle>
           <Table
             headers={["Operation", "Latency"]}
             rows={[

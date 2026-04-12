@@ -128,7 +128,7 @@ export default function RoadmapPage() {
       <S id="gpu">
         <div className="max-w-[900px] mx-auto">
           <h2 className="reveal text-[26px] tracking-tight mb-3">With GPU — Learn the Neurodiverse Brain</h2>
-          <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-8 font-light max-w-lg">The statistical transform is an approximation. These items replace it with learned models — but require GPU compute and large-scale datasets.</p>
+          <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-8 font-light max-w-lg">Our child analysis (548 subjects, 0 FDR connections) proved that the statistical transform cannot detect connectivity differences in children under 12. GPU fine-tuning is not optional — it is the only path to child-specific and early detection models.</p>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {[
@@ -222,25 +222,25 @@ export default function RoadmapPage() {
               "Age-band selector in NeuroBrain API and frontend",
               "Uncertainty and CI metadata exposed in API responses",
               "Clinical disclaimer added to all compare responses",
+              "Child analysis: ABIDE I+II combined (548 children, 221 ASD + 327 TD) — 0 FDR connections. Confirms statistical transform insufficient for children <12",
+              "5-minute individual calibration module at /calibrate",
+              "CI ranges displayed on sensory profile bars",
               "Live API: predict, compare, connectivity, interpret",
               "Sensory Audit app with video and text input",
               "7-network sensory profiling system",
               "Brain demo with per-timestep interpretation",
-              "Technical paper updated with real FDR numbers and honest limitations",
+              "Technical paper updated with child-specific negative finding",
               "Public roadmap page with CPU vs GPU tracks",
-              "NDA, SPARK, UK Biobank applications submitted",
               "Three apps deployed: mind.new, neuro.mind.new, sensory.mind.new",
             ]} />
 
             <ProgressGroup title="In Progress" color="yellow" items={[
+              "HBN Data Usage Agreement (phenotypic access for 990 children 5-12)",
               "Clinical guardrails — disclaimer added, full ethics documentation pending",
-              "Per-site preprocessing documentation",
             ]} />
 
             <ProgressGroup title="Not Started (CPU)" color="purple" items={[
-              "5-minute individual calibration module",
               "Behavioral validation study protocol",
-              "Network-level CI propagation in frontend charts",
             ]} />
 
             <ProgressGroup title="Blocked on GPU" color="red" items={[
