@@ -20,25 +20,25 @@ export default function TeamPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {[
               {
-                name: "Ibrahim Raza",
-                role: "Founder & Lead Researcher",
-                linkedin: "https://www.linkedin.com/in/mohammed-ibrahim-raza-2a560b248",
-                bio: "Leads the development of AQAL — from model architecture to deployment. Built the multimodal brain encoder, the ABIDE connectivity pipeline, and the FDR-corrected statistical framework. Previously focused on AI applications in healthcare accessibility.",
-                focus: ["Brain encoding architecture", "Connectivity analysis", "API & infrastructure"],
+                name: "Meraj Faheem",
+                role: "CEO & Executive Director",
+                photo: "/team/meraj.jpg",
+                linkedin: "https://www.linkedin.com/in/merajf/",
+                bio: "Serial entrepreneur and CEO of EdVenture Park — India's first student-focused startup incubator, with 200+ ideas incubated and 11 startups funded. Founded The Hacking School (India's first coding bootcamp, acquired by iCollege in 2020) and Code For India Foundation. Holds postgraduate studies in Clinical Research from NIMS and MA in Psychology from IGNOU. Mentor at Atal Innovation Mission. Brings a decade of experience scaling edtech, fintech, and healthtech ventures to Leeza Care's mission.",
+                focus: ["Strategy & incubation", "EdVenture Park", "Clinical research", "Entrepreneurship education"],
               },
               {
-                name: "Meraj Faheem",
-                role: "Co-Researcher",
-                linkedin: "https://www.linkedin.com/in/merajf/",
-                bio: "Contributes to AQAL's neuroscience foundations and clinical translation strategy. Focused on bridging the gap between computational predictions and real-world accessibility applications for schools and clinics.",
-                focus: ["Clinical translation", "Accessibility applications", "Research methodology"],
+                name: "Ibrahim Raza",
+                role: "Founder & Lead Researcher",
+                photo: "/team/ibrahim.jpg",
+                linkedin: "https://www.linkedin.com/in/mohammed-ibrahim-raza-2a560b248",
+                bio: "Computer Science graduate from Hyderabad who built AQAL — from the 177M-parameter brain encoder to the 1,545-subject FDR-corrected connectivity pipeline. Inspired by his sister Aleeza, who is autistic, Ibrahim created Leeza.app to make autism detection accessible to families who can't afford traditional assessments (₹30,000/month therapy reduced to free screening). Incubated at EdVenture Park. Built the entire AQAL stack: multimodal transformer, ABIDE I+II training pipeline, real-time API, and three web applications.",
+                focus: ["Brain encoding architecture", "ABIDE connectivity analysis", "API & infrastructure", "Full-stack development"],
               },
             ].map((person) => (
               <div key={person.name} className="card p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[var(--accent)] to-[var(--accent2)] flex items-center justify-center text-white text-[16px] font-semibold">
-                    {person.name.split(" ").map(n => n[0]).join("")}
-                  </div>
+                <div className="flex items-center gap-4 mb-4">
+                  <img src={person.photo} alt={person.name} className="w-16 h-16 rounded-full object-cover border-2 border-[var(--border)]" />
                   <div>
                     <h2 className="text-[15px] font-medium">{person.name}</h2>
                     <p className="text-[12px] text-[var(--accent)] font-light">{person.role}</p>
@@ -63,7 +63,11 @@ export default function TeamPage() {
             <h3 className="text-[14px] font-medium mb-2">Built at</h3>
             <p className="text-[18px] font-medium gradient-text mb-2">Leeza Care</p>
             <p className="text-[12px] text-[var(--muted)] font-light">Research &amp; Development Foundation</p>
-            <p className="text-[12px] text-[var(--muted)] font-light mt-2">Building technology for neurodiversity awareness, accessibility, and inclusion.</p>
+            <p className="text-[12px] text-[var(--muted)] font-light mt-3 max-w-md mx-auto">Named after Ibrahim&apos;s sister Aleeza. Incubated at EdVenture Park, Hyderabad. Building technology for neurodiversity awareness, accessibility, and inclusion.</p>
+            <div className="flex justify-center gap-4 mt-4">
+              <a href="https://leeza.app" target="_blank" rel="noopener noreferrer" className="text-[12px] text-[var(--accent)] hover:text-white transition">leeza.app</a>
+              <a href="https://www.edventurepark.com" target="_blank" rel="noopener noreferrer" className="text-[12px] text-[var(--muted)] hover:text-white transition">EdVenture Park</a>
+            </div>
           </div>
         </div>
       </section>
@@ -71,7 +75,10 @@ export default function TeamPage() {
       <footer className="border-t border-[var(--border)] py-5 px-6">
         <div className="max-w-[800px] mx-auto flex items-center justify-between text-[11px] text-[var(--muted)]">
           <span>Mind.new by Leeza Care</span>
-          <a href="/" className="hover:text-white transition">Home</a>
+          <div className="flex gap-4">
+            <a href="/privacy" className="hover:text-white transition">Privacy</a>
+            <a href="/" className="hover:text-white transition">Home</a>
+          </div>
         </div>
       </footer>
     </main>
