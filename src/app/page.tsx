@@ -60,13 +60,13 @@ function Nav() {
   useEffect(() => { const h = () => setS(window.scrollY > 40); window.addEventListener("scroll", h); return () => window.removeEventListener("scroll", h); }, []);
   const links = [
     { href: "#research", label: "Research" },
-    { href: "#capabilities", label: "Capabilities" },
-    { href: "#products", label: "Products" },
-    { href: "#roadmap", label: "Timeline" },
+    { href: "/explorer", label: "Explorer" },
     { href: "/paper", label: "Paper" },
     { href: "/roadmap", label: "Roadmap" },
+    { href: "/team", label: "Team" },
     { href: "https://neuro.mind.new", label: "NeuroBrain" },
     { href: "https://sensory.mind.new", label: "Sensory Audit" },
+    { href: "/waitlist", label: "Waitlist" },
   ];
   return (
     <>
