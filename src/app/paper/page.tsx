@@ -204,13 +204,13 @@ export default function PaperPage() {
           <SubTitle>4.1 Connectivity Analysis</SubTitle>
           <P>Analysis of 1,545 subjects from two consortia (36 clinical sites), with site harmonization and age/sex covariates, revealed 1,002 FDR-corrected significant connections out of 4,950 tested (20.2%, q &lt; 0.05). This represents a 2.6x improvement over the single-consortium baseline (387 FDR from 871 subjects). The limbic system showed the largest effect sizes, consistent with known emotional regulation differences. Default mode network showed bilateral temporal alterations. 73 connections survived Bonferroni correction.</P>
 
-          <SubTitle>4.2 Child-Specific Analysis (ABIDE I + II Combined)</SubTitle>
-          <P>To test whether connectivity differences exist in younger children, we combined ABIDE I and II to produce a dedicated child cohort: 548 subjects under age 12 (221 ASD, 327 TD) across 24 sites. Despite 2.5x more subjects than the ABIDE I-only child subset, zero connections survived FDR correction (331 uncorrected at p &lt; 0.05, 0 FDR, 0 Bonferroni).</P>
+          <SubTitle>4.2 Child-Specific Analysis (Dual-Consortium Combined)</SubTitle>
+          <P>To test whether connectivity differences exist in younger children, we combined two consortia to produce a dedicated child cohort: 548 subjects under age 12 (221 ASD, 327 TD) across 24 sites. Despite 2.5x more subjects than the Consortium I-only child subset, zero connections survived FDR correction (331 uncorrected at p &lt; 0.05, 0 FDR, 0 Bonferroni).</P>
           <Table
             headers={["Dataset", "N", "ASD", "TD", "Uncorrected", "FDR"]}
             rows={[
-              ["All-ages (ABIDE I+II)", "1,545", "693", "852", "1,773 (35.8%)", "1,002 (20.2%)"],
-              ["All-ages (ABIDE I only)", "871", "403", "468", "1,065 (21.5%)", "387 (7.8%)"],
+              ["All-ages (Consortium I+II)", "1,545", "693", "852", "1,773 (35.8%)", "1,002 (20.2%)"],
+              ["All-ages (Consortium I only)", "871", "403", "468", "1,065 (21.5%)", "387 (7.8%)"],
               ["Adolescents 12-18 (I+II)", "542", "262", "280", "\u2014", "49"],
               ["Adolescents 12-18 (I only)", "383", "174", "209", "\u2014", "73"],
               ["Adults 18+ (I+II)", "455", "210", "245", "\u2014", "0"],
@@ -218,7 +218,7 @@ export default function PaperPage() {
               ["Children <12 (I only)", "222", "106", "116", "377 (7.6%)", "0"],
             ]}
           />
-          <P>This is a significant negative finding. Resting-state functional connectivity differences between ASD and TD children under 12 are too subtle for group-level statistical detection, even with 548 subjects and FDR correction. The uncorrected count actually decreased from 377 to 331 when adding ABIDE II, suggesting some of the ABIDE I-only signal was noise. This confirms that the all-ages transform (387 FDR connections) is driven primarily by adolescent and adult data, and that early childhood detection will require either task-evoked fMRI, direct model fine-tuning, or non-fMRI modalities such as EEG or behavioral video analysis.</P>
+          <P>This is a significant negative finding. Resting-state functional connectivity differences between ASD and TD children under 12 are too subtle for group-level statistical detection, even with 548 subjects and FDR correction. The uncorrected count actually decreased from 377 to 331 when adding Consortium II, suggesting some of the Consortium I-only signal was noise. This confirms that the all-ages transform (387 FDR connections) is driven primarily by adolescent and adult data, and that early childhood detection will require either task-evoked fMRI, direct model fine-tuning, or non-fMRI modalities such as EEG or behavioral video analysis.</P>
 
           <SubTitle>4.3 Network-Level Differences</SubTitle>
           <Table

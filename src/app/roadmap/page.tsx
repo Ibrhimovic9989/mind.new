@@ -88,7 +88,7 @@ export default function RoadmapPage() {
           <p className="reveal reveal-delay-1 text-[14px] text-[var(--muted)] mb-8 font-light max-w-lg">Most cleanup is data work and statistics, not deep learning. These address the three biggest flaws: uncorrected p-values, group-average predictions, and missing behavioral ground truth.</p>
 
           {[
-            { priority: "P1", title: "FDR-Corrected Connectivity Map", status: "done", desc: "1,545 subjects across 36 sites (ABIDE I+II). 1,002 FDR-corrected connections (q<0.05), 1,773 uncorrected, 73 Bonferroni. 2.6x improvement over single-consortium v4.", detail: "v5 transform trained, uploaded to HuggingFace, APIs auto-load v5, paper updated." },
+            { priority: "P1", title: "FDR-Corrected Connectivity Map", status: "done", desc: "1,545 subjects across 36 sites (dual-consortium). 1,002 FDR-corrected connections (q<0.05), 1,773 uncorrected, 73 Bonferroni. 2.6x improvement over single-consortium v4.", detail: "v5 transform trained, uploaded to HuggingFace, APIs auto-load v5, paper updated." },
             { priority: "P2", title: "Age Stratification", status: "done", desc: "Adolescents (12-18): 49 FDR from 262 ASD + 280 TD. Children (<12): 1 FDR from 221 ASD + 327 TD (548 total, confirms statistical transform insufficient). Adults: 0 FDR.", detail: "Age-band selector in API and frontend. Child-specific analysis published as negative finding." },
             { priority: "P3", title: "Uncertainty Quantification", status: "done", desc: "200 bootstrap iterations producing 95% credible intervals for each of 20,484 vertices. Mean CI width: 0.027, max: 0.108. Propagated to API responses.", detail: "CI bounds stored in v4 transform. API returns uncertainty metadata (mean CI width, high-confidence vertex %)." },
             { priority: "P4", title: "Site Harmonization", status: "done", desc: "Site effects residualized from all 4,950 connectivity features across 20 sites via linear regression before statistical testing.", detail: "Implemented in v4 training pipeline. Per-site documentation not yet started." },
@@ -214,7 +214,7 @@ export default function RoadmapPage() {
           <div className="reveal space-y-6">
             <ProgressGroup title="Done" color="green" items={[
               "Foundation model deployed (CPU, 20-30s inference)",
-              "1,545-subject dual-consortium connectivity analysis (v5, ABIDE I+II)",
+              "1,545-subject dual-consortium connectivity analysis (v5, dual-consortium)",
               "1,002 FDR-corrected connections (q<0.05), 2.6x improvement over v4",
               "Age-stratified transforms: child / adolescent / adult",
               "200-iteration bootstrap uncertainty (95% CI per vertex)",
@@ -222,7 +222,7 @@ export default function RoadmapPage() {
               "Age-band selector in NeuroBrain API and frontend",
               "Uncertainty and CI metadata exposed in API responses",
               "Clinical disclaimer added to all compare responses",
-              "Child analysis: ABIDE I+II combined (548 children, 221 ASD + 327 TD) — 0 FDR connections. Confirms statistical transform insufficient for children <12",
+              "Child analysis: dual-consortium combined (548 children, 221 ASD + 327 TD) — 0 FDR connections. Confirms statistical transform insufficient for children <12",
               "5-minute individual calibration module at /calibrate",
               "CI ranges displayed on sensory profile bars",
               "Live API: predict, compare, connectivity, interpret",

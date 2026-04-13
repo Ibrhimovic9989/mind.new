@@ -481,7 +481,7 @@ function Timeline() {
         {[
           { v: "AQAL v0.1", n: "Seed", d: "Foundation model trained. Statistical brain transform. Live API.", c: false },
           { v: "AQAL v0.2", n: "Root", d: "FDR-corrected. Site harmonization. Age stratification. Bootstrap uncertainty. Single consortium (871 subjects).", c: false },
-          { v: "AQAL v0.3", n: "Trunk", d: "Dual-consortium (1,545 subjects, 36 sites). 1,002 FDR connections. ABIDE I+II combined. Deployed.", c: true },
+          { v: "AQAL v0.3", n: "Trunk", d: "Dual-consortium (1,545 subjects, 36 sites). 1,002 FDR connections. Deployed.", c: true },
           { v: "AQAL v0.5", n: "Sprout", d: "GPU fine-tuning. Sensory subtypes. Video input. Age-specific models.", c: false },
           { v: "AQAL v1.0", n: "Bloom", d: "Clinically validated. 10K+ subjects. Sensory Passport. Published metrics.", c: false },
           { v: "AQAL v2.0", n: "Canopy", d: "Real-time processing. EEG integration. Wearable support. 100K+ subjects.", c: false },
