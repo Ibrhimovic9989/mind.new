@@ -32,8 +32,8 @@ export default function TeamPage() {
                 role: "Director & CEO, Leeza Care R&D Foundation",
                 photo: "/team/ibrahim.jpg",
                 linkedin: "https://www.linkedin.com/in/mohammed-ibrahim-raza-2a560b248",
-                bio: "Founder of Leeza Care, building AI tools for neurodiversity and autism accessibility. Previously CTO at Finacra.com and SuperAccountant.in, where he led full-stack product engineering. Youth Council Member at Social Impact Award. Computer Science graduate with hands-on experience in AI/ML, building and deploying production systems from model training to API infrastructure.",
-                expertise: ["Founder, Leeza Care", "CTO, Finacra & SuperAccountant", "AI/ML & full-stack engineering", "Youth Council, Social Impact Award", "Product deployment & scaling"],
+                bio: "Founder and CEO of Leeza Care, leading the development of AQAL and the company's neurodiversity mission. Concurrently serves as CTO at Finacra.com (fintech) and SuperAccountant.in (accounting automation), where he architects and ships production platforms end-to-end. Youth Council Member at Social Impact Award, supporting young social entrepreneurs across India. CS graduate with applied AI/ML experience spanning brain encoding models, fintech systems, and SaaS product engineering.",
+                expertise: ["Founder & CEO, Leeza Care", "CTO, Finacra.com", "CTO, SuperAccountant.in", "Youth Council, Social Impact Award", "Applied AI/ML & product engineering"],
               },
             ].map((person) => (
               <div key={person.name} className="card p-6">
