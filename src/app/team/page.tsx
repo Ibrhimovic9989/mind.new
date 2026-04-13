@@ -32,8 +32,8 @@ export default function TeamPage() {
                 role: "Director & CEO, Leeza Care R&D Foundation",
                 photo: "/team/ibrahim.jpg",
                 linkedin: "https://www.linkedin.com/in/mohammed-ibrahim-raza-2a560b248",
-                bio: "Full-stack AI engineer who designed, built, and deployed the entire AQAL system — from the 177M-parameter multimodal brain encoder to the FDR-corrected connectivity pipeline processing 1,545 fMRI scans across 36 clinical sites. Expertise in deep learning model architecture, neuroimaging data processing, statistical analysis (FDR correction, bootstrap uncertainty quantification), and production API deployment. Computer Science graduate focused on making neuroscience-grade predictions accessible without GPU or clinical infrastructure.",
-                expertise: ["Multimodal transformer architecture", "Neuroimaging connectivity analysis", "Statistical correction (FDR, bootstrap CI)", "Full-stack deployment (FastAPI, Next.js, Azure)", "Brain encoding & sensory profiling"],
+                bio: "Founder of Leeza Care, building AI tools for neurodiversity and autism accessibility. Previously CTO at Finacra.com and SuperAccountant.in, where he led full-stack product engineering. Youth Council Member at Social Impact Award. Computer Science graduate with hands-on experience in AI/ML, building and deploying production systems from model training to API infrastructure.",
+                expertise: ["Founder, Leeza Care", "CTO, Finacra & SuperAccountant", "AI/ML & full-stack engineering", "Youth Council, Social Impact Award", "Product deployment & scaling"],
               },
             ].map((person) => (
               <div key={person.name} className="card p-6">
