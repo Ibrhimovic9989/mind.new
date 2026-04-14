@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
+import { SiteNav, SiteFooter } from "@/components/Shell";
 
 const NETWORKS = [
   { id: "Default", label: "Default Mode", color: "#22c55e", count: 421, desc: "Self-reflection, mind-wandering, social thinking. The brain's 'idle mode' that's actually doing deep internal processing." },
@@ -41,7 +42,7 @@ export default function ExplorerPage() {
 
   return (
     <main>
-      <Nav />
+      <SiteNav current="Explorer" />
       <section className="pt-24 pb-8 px-6">
         <div className="max-w-[1024px] mx-auto">
           <div className="flex items-center gap-2 mb-5">
@@ -135,31 +136,7 @@ export default function ExplorerPage() {
         </div>
       </section>
 
-      <footer className="border-t border-[var(--border)] py-5 px-6 mt-16">
-        <div className="max-w-[1024px] mx-auto flex items-center justify-between text-[11px] text-[var(--muted)]">
-          <span>Mind.new by Leeza Care</span>
-          <a href="/" className="hover:text-white transition">Home</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
-  );
-}
-
-function Nav() {
-  return (
-    <nav className="fixed top-0 w-full z-50 bg-[#050507]/80 backdrop-blur-xl border-b border-[var(--border)]">
-      <div className="max-w-[1024px] mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-1">
-          <img src="/brainlogo.png" alt="" className="h-7 w-7 object-contain" />
-          <span className="text-[20px] tracking-tight" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 500 }}>
-            <span className="gradient-text">mind</span><span className="text-[#52525b]" style={{ fontStyle: "normal" }}>.</span><span className="text-[#d4d4d8] font-light">new</span>
-          </span>
-        </a>
-        <div className="flex items-center gap-4">
-          <a href="/" className="text-[12px] text-[var(--muted)] hover:text-white transition">Home</a>
-          <span className="text-[12px] px-2.5 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)]">Explorer</span>
-        </div>
-      </div>
-    </nav>
   );
 }

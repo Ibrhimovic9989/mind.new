@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { SiteNav, SiteFooter } from "@/components/Shell";
 
 export default function WaitlistPage() {
   const [email, setEmail] = useState("");
@@ -20,7 +21,7 @@ export default function WaitlistPage() {
 
   return (
     <main>
-      <Nav />
+      <SiteNav current="Waitlist" />
       <section className="pt-24 pb-16 px-6">
         <div className="max-w-[600px] mx-auto">
           <div className="flex items-center gap-2 mb-5">
@@ -98,31 +99,7 @@ export default function WaitlistPage() {
         </div>
       </section>
 
-      <footer className="border-t border-[var(--border)] py-5 px-6">
-        <div className="max-w-[600px] mx-auto flex items-center justify-between text-[11px] text-[var(--muted)]">
-          <span>Leeza Care Research &amp; Development Foundation</span>
-          <a href="/" className="hover:text-white transition">Home</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
-  );
-}
-
-function Nav() {
-  return (
-    <nav className="fixed top-0 w-full z-50 bg-[#050507]/80 backdrop-blur-xl border-b border-[var(--border)]">
-      <div className="max-w-[600px] mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-1">
-          <img src="/brainlogo.png" alt="" className="h-7 w-7 object-contain" />
-          <span className="text-[20px] tracking-tight" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 500 }}>
-            <span className="gradient-text">mind</span><span className="text-[#52525b]" style={{ fontStyle: "normal" }}>.</span><span className="text-[#d4d4d8] font-light">new</span>
-          </span>
-        </a>
-        <div className="flex items-center gap-4">
-          <a href="/" className="text-[12px] text-[var(--muted)] hover:text-white transition">Home</a>
-          <span className="text-[12px] px-2.5 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)]">Waitlist</span>
-        </div>
-      </div>
-    </nav>
   );
 }

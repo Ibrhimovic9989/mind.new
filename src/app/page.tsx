@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef, ReactNode } from "react";
 import BrainDemo from "@/components/BrainDemo";
+import { ThemeToggle } from "@/components/Shell";
 
 /* ─── SCROLL REVEAL ─── */
 function useReveal() {
@@ -83,8 +84,9 @@ function Nav() {
           <div className="hidden md:flex items-center gap-7 text-[13px] text-[var(--muted)]">
             {links.map((l) => <a key={l.href} href={l.href} className="hover:text-white transition">{l.label}</a>)}
           </div>
-          <div className="flex items-center gap-3">
-            <a href="#contact" className="hidden sm:inline text-[13px] px-4 py-1.5 rounded-full border border-white/10 text-[var(--muted)] hover:text-white hover:border-white/20 transition">Request Access</a>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <a href="/waitlist" className="hidden sm:inline text-[13px] px-4 py-1.5 rounded-full border border-white/10 text-[var(--muted)] hover:text-white hover:border-white/20 transition">Join Waitlist</a>
             <button onClick={() => setOpen(!open)} className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg hover:bg-white/5 transition" aria-label="Menu">
               {open ? (
                 <svg className="w-5 h-5 text-[var(--text)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M6 18L18 6M6 6l12 12" /></svg>

@@ -1,9 +1,11 @@
 "use client";
 
+import { SiteNav, SiteFooter } from "@/components/Shell";
+
 export default function TeamPage() {
   return (
     <main>
-      <Nav />
+      <SiteNav current="Team" />
       <section className="pt-24 pb-16 px-6">
         <div className="max-w-[800px] mx-auto">
           <div className="flex items-center gap-2 mb-5">
@@ -72,34 +74,7 @@ export default function TeamPage() {
         </div>
       </section>
 
-      <footer className="border-t border-[var(--border)] py-5 px-6">
-        <div className="max-w-[800px] mx-auto flex items-center justify-between text-[11px] text-[var(--muted)]">
-          <span>Mind.new by Leeza Care</span>
-          <div className="flex gap-4">
-            <a href="/privacy" className="hover:text-white transition">Privacy</a>
-            <a href="/" className="hover:text-white transition">Home</a>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
-  );
-}
-
-function Nav() {
-  return (
-    <nav className="fixed top-0 w-full z-50 bg-[#050507]/80 backdrop-blur-xl border-b border-[var(--border)]">
-      <div className="max-w-[800px] mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-1">
-          <img src="/brainlogo.png" alt="" className="h-7 w-7 object-contain" />
-          <span className="text-[20px] tracking-tight" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 500 }}>
-            <span className="gradient-text">mind</span><span className="text-[#52525b]" style={{ fontStyle: "normal" }}>.</span><span className="text-[#d4d4d8] font-light">new</span>
-          </span>
-        </a>
-        <div className="flex items-center gap-4">
-          <a href="/" className="text-[12px] text-[var(--muted)] hover:text-white transition">Home</a>
-          <span className="text-[12px] px-2.5 py-1 rounded-full bg-[var(--accent)]/10 text-[var(--accent)]">Team</span>
-        </div>
-      </div>
-    </nav>
   );
 }

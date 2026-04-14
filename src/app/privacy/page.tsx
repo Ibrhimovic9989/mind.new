@@ -1,9 +1,11 @@
 "use client";
 
+import { SiteNav, SiteFooter } from "@/components/Shell";
+
 export default function PrivacyPage() {
   return (
     <main>
-      <Nav />
+      <SiteNav current="Privacy" />
       <article className="max-w-[760px] mx-auto px-6 pt-28 pb-24">
         <h1 className="text-[28px] tracking-tight font-medium mb-2">Privacy Policy &amp; Terms of Use</h1>
         <p className="text-[12px] text-[var(--muted)] mb-10">Last updated: April 2026</p>
@@ -61,12 +63,7 @@ export default function PrivacyPage() {
         </div>
       </article>
 
-      <footer className="border-t border-[var(--border)] py-5 px-6">
-        <div className="max-w-[760px] mx-auto flex items-center justify-between text-[11px] text-[var(--muted)]">
-          <span>Leeza Care Research &amp; Development Foundation</span>
-          <a href="/" className="hover:text-white transition">Home</a>
-        </div>
-      </footer>
+      <SiteFooter />
     </main>
   );
 }
@@ -77,24 +74,5 @@ function Sec({ title, children }: { title: string; children: React.ReactNode }) 
       <h2 className="text-[16px] font-medium text-white mb-3">{title}</h2>
       {children}
     </section>
-  );
-}
-
-function Nav() {
-  return (
-    <nav className="fixed top-0 w-full z-50 bg-[#050507]/80 backdrop-blur-xl border-b border-[var(--border)]">
-      <div className="max-w-[760px] mx-auto px-6 h-14 flex items-center justify-between">
-        <a href="/" className="flex items-center gap-1">
-          <img src="/brainlogo.png" alt="" className="h-7 w-7 object-contain" />
-          <span className="text-[20px] tracking-tight" style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", fontStyle: "italic", fontWeight: 500 }}>
-            <span className="gradient-text">mind</span><span className="text-[#52525b]" style={{ fontStyle: "normal" }}>.</span><span className="text-[#d4d4d8] font-light">new</span>
-          </span>
-        </a>
-        <div className="flex items-center gap-4">
-          <a href="/" className="text-[12px] text-[var(--muted)] hover:text-white transition">Home</a>
-          <span className="text-[12px] px-2.5 py-1 rounded-full bg-white/5 text-[var(--muted)]">Privacy</span>
-        </div>
-      </div>
-    </nav>
   );
 }
